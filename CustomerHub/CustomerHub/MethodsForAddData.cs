@@ -10,7 +10,7 @@ namespace CustomerHub
 {
     internal partial class Program
     {
-        static void AddUserData(string connectionString, int id, string email, string password)
+        static void AddUser(string connectionString, int id, string email, string password)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -29,7 +29,7 @@ namespace CustomerHub
                 command.ExecuteNonQuery();
             }
         }
-        static void AddCharacteristicsData(string connectionString, int id, string productType, string category, string description, string manufacturer, string country, string manufactureDate, string characteristicsStatus, int productsId)
+        static void AddCharacteristics(string connectionString, int id, string productType, string category, string description, string manufacturer, string country, string manufactureDate, string characteristicsStatus, int productsId)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -55,7 +55,7 @@ namespace CustomerHub
             }
         }
 
-        static void AddProductData(string connectionString, int id, string name, double price, int clientsId, int usersId, int characteristicsId)
+        static void AddProduct(string connectionString, int id, string name, double price, int clientsId, int usersId, int characteristicsId)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -78,7 +78,7 @@ namespace CustomerHub
             }
         }
 
-        static void AddClientData(string connectionString, int id, string firstName, string secondName, string thirdName, string phoneNumber, string email, string address, string factory, string dateAdded, string clientStatus, int usersId, int productsId, int remindersId)
+        static void AddClient(string connectionString, int id, string firstName, string secondName, string thirdName, string phoneNumber, string email, string address, string factory, string dateAdded, string clientStatus, int usersId, int productsId, int remindersId)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {
@@ -108,7 +108,7 @@ namespace CustomerHub
             }
         }
 
-        static void AddReminderData(string connectionString, int id, string note, string reminder, int clientsId, int usersId)
+        static void AddReminder(string connectionString, int id, string note, string reminder, int clientsId, int usersId)
         {
             using (var connection = new SQLiteConnection(connectionString))
             {

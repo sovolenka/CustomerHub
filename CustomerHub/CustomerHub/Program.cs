@@ -12,65 +12,65 @@ namespace CustomerHub
     {
         static void Main(string[] args)
         {
-            string connectionString = "Data Source=D:\\лну\\5 семестр\\СustomerHub_database\\CustomerHub";
-            //for (int i = 1; i <= 50; i++)
-            //{
-            //    string email = $"user{i}@example.com";
-            //    string password = $"password{i}";
+            string connectionString = "Data Source=CustomerHub";
+            for (int i = 1; i <= 50; i++)
+            {
+                string email = $"user{i}@example.com";
+                string password = $"password{i}";
 
-            //    AddUserData(connectionString, i, email, password);
-            //}
-            //for (int i = 1; i <= 50; i++)
-            //{
-            //    string productType = $"ProductType{i}";
-            //    string category = $"Category{i}";
-            //    string description = $"Description{i}";
-            //    string manufacturer = $"Manufacturer{i}";
-            //    string country = $"Country{i}";
-            //    string manufactureDate = "2023-10-10";
-            //    string characteristicsStatus = "new";
-            //    int productsId = i;
+                AddUser(connectionString, i, email, password);
+            }
+            for (int i = 1; i <= 50; i++)
+            {
+                string productType = $"ProductType{i}";
+                string category = $"Category{i}";
+                string description = $"Description{i}";
+                string manufacturer = $"Manufacturer{i}";
+                string country = $"Country{i}";
+                string manufactureDate = "2023-10-10";
+                string characteristicsStatus = "new";
+                int productsId = i;
 
-            //    AddCharacteristicsData(connectionString, i, productType, category, description, manufacturer, country, manufactureDate, characteristicsStatus, productsId);
-            //}
+                AddCharacteristics(connectionString, i, productType, category, description, manufacturer, country, manufactureDate, characteristicsStatus, productsId);
+            }
 
-            //for (int i = 1; i <= 50; i++)
-            //{
-            //    string name = $"Product Name{i}";
-            //    double price = 19.99 + i;
-            //    int clientsId = i;
-            //    int usersId = i;
-            //    int characteristicsId = i;
+            for (int i = 1; i <= 50; i++)
+            {
+                string name = $"Product Name{i}";
+                double price = 19.99 + i;
+                int clientsId = i;
+                int usersId = i;
+                int characteristicsId = i;
 
-            //    AddProductData(connectionString, i, name, price, clientsId, usersId, characteristicsId);
-            //}
+                AddProduct(connectionString, i, name, price, clientsId, usersId, characteristicsId);
+            }
 
-            //for (int i = 1; i <= 50; i++)
-            //{
-            //    string firstName = $"First Name{i}";
-            //    string secondName = $"Second Name{i}";
-            //    string thirdName = $"Third Name{i}";
-            //    string phoneNumber = $"+123456789{i}";
-            //    string email = $"client{i}@example.com";
-            //    string address = $"Address{i}";
-            //    string factory = $"Factory{i}";
-            //    string dateAdded = "2023-10-10";
-            //    string clientStatus = "active";
-            //    int usersId = i;
-            //    int productsId = i;
-            //    int remindersId = i;
+            for (int i = 1; i <= 50; i++)
+            {
+                string firstName = $"First Name{i}";
+                string secondName = $"Second Name{i}";
+                string thirdName = $"Third Name{i}";
+                string phoneNumber = $"+123456789{i}";
+                string email = $"client{i}@example.com";
+                string address = $"Address{i}";
+                string factory = $"Factory{i}";
+                string dateAdded = "2023-10-10";
+                string clientStatus = "active";
+                int usersId = i;
+                int productsId = i;
+                int remindersId = i;
 
-            //    AddClientData(connectionString, i, firstName, secondName, thirdName, phoneNumber, email, address, factory, dateAdded, clientStatus, usersId, productsId, remindersId);
-            //}
+                AddClient(connectionString, i, firstName, secondName, thirdName, phoneNumber, email, address, factory, dateAdded, clientStatus, usersId, productsId, remindersId);
+            }
 
-            //for (int i = 1; i <= 50; i++)
-            //{
-            //    string note = $"Note{i}";
-            //    string reminder = "2023-10-10 10:00:00";
-            //    int clientsId = i;
-            //    int usersId = i;
-            //    AddReminderData(connectionString, i, note, reminder, clientsId, usersId);
-            //}
+            for (int i = 1; i <= 50; i++)
+            {
+                string note = $"Note{i}";
+                string reminder = "2023-10-10 10:00:00";
+                int clientsId = i;
+                int usersId = i;
+                AddReminder(connectionString, i, note, reminder, clientsId, usersId);
+            }
 
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
