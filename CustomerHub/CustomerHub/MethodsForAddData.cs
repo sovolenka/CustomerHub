@@ -29,6 +29,7 @@ namespace CustomerHub
                 command.ExecuteNonQuery();
             }
         }
+
         static void AddCharacteristics(string connectionString, int id, string productType, string category, string description, string manufacturer, string country, string manufactureDate, string characteristicsStatus, int productsId)
         {
             using (var connection = new SQLiteConnection(connectionString))
@@ -129,5 +130,106 @@ namespace CustomerHub
                 command.ExecuteNonQuery();
             }
         }
+
+        static void PrintUsers(string connectionString)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM users";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Users:");
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"User ID: {reader["id"]}, Email: {reader["email"]}, Password: {reader["password"]}");
+                    }
+                }
+            }
+        }
+
+        static void PrintCharacteristics(string connectionString)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM characteristics";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Characteristics:");
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"Characteristics ID: {reader["id"]}, Product Type: {reader["product_type"]}, Category: {reader["category"]}, Description: {reader["description"]}");
+                    }
+                }
+            }
+        }
+
+        static void PrintProducts(string connectionString)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM products";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Products:");
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"Product ID: {reader["id"]}, Name: {reader["name"]}, Price: {reader["price"]}, Clients ID: {reader["clients_id"]}, Users ID: {reader["users_id"]}, Characteristics ID: {reader["characteristics_id"]}");
+                    }
+                }
+            }
+        }
+
+        static void PrintClients(string connectionString)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM clients";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Clients:");
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"Client ID: {reader["id"]}, First Name: {reader["first_name"]}, Second Name: {reader["second_name"]}, Third Name: {reader["third_name"]}, Phone Number: {reader["phone_number"]}, Email: {reader["email"]}, Address: {reader["address"]}, Factory: {reader["factory"]}, Date Added: {reader["date_added"]}, Client Status: {reader["client_status"]}, Users ID: {reader["users_id"]}, Products ID: {reader["products_id"]}, Reminders ID: {reader["reminders_id"]}");
+                    }
+                }
+            }
+        }
+
+        static void PrintReminders(string connectionString)
+        {
+            using (var connection = new SQLiteConnection(connectionString))
+            {
+                connection.Open();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM reminders";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    Console.WriteLine("Reminders:");
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"Reminder ID: {reader["id"]}, Note: {reader["note"]}, Reminder: {reader["reminder"]}, Clients ID: {reader["clients_id"]}, Users ID: {reader["users_id"]}");
+                    }
+                }
+            }
+        }
+
     }
 }
