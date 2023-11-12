@@ -5,23 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Вікно авторизації" Height="450" Width="805">
+        Title="Вікно авторизації" MinWidth="300" MinHeight="350" Height="315" Width="505">
     <Grid Background="#FFF4EEEE" Margin="10,10,10,10">
-        <TextBlock Text="Увійдіть в акаунт" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="0,53,0,0"/>
+        <TextBlock Text="Увійдіть в акаунт" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="0,20,0,0"/>
 
-        <TextBlock Text="Не маєте акаунту?" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="11" Margin="292,284,0,0"/>
-
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0">
             <TextBlock Text="Пошта:" FontSize="12" Height="21"/>
             <TextBox x:Name="LoginTextBox" Width="200" Margin="0,5,0,0" GotFocus="TextBox_GotFocus" Height="30"/>
             <TextBlock Text="Пароль:" FontSize="12"/>
             <PasswordBox x:Name="PasswordBox" Width="200" GotFocus="PasswordBox_GotFocus" Password="" Height="28"/>
         </StackPanel>
 
-        <TextBlock Text="Забули пароль?" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="11" Margin="0,260,0,0" TextDecorations="Underline" MouseDown="ForgotPasswordTextBlock_MouseDown"/>
+        <Button Content="Увійти" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonClick" Margin="0,181,0,0" Width="200" Height="29"/>
 
-        <Button Content="Увійти" HorizontalAlignment="Center" VerticalAlignment="Top" Click="ButtonClick" Margin="0,217,0,0" Width="200" Height="29"/>
+        <TextBlock Text="Забули пароль?" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="11" Margin="0,210,0,0" TextDecorations="Underline" MouseDown="ForgotPasswordTextBlock_MouseDown"/>
 
-        <TextBlock Text="Зареєструватися" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" FontWeight="Bold" Margin="396,283,0,0" TextDecorations="Underline" MouseDown="RegisterTextBlock_MouseDown"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,230,0,0">
+            <TextBlock Text="Не маєте акаунту?" FontSize="11"/>
+            <TextBlock Text="Зареєструватися" FontSize="12" FontWeight="Bold" TextDecorations="Underline" MouseDown="RegisterTextBlock_MouseDown" RenderTransformOrigin="0.585,1.782"/>
+        </StackPanel>
     </Grid>
 </Window>
