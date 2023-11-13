@@ -7,12 +7,11 @@ public class Product
 {
     public Product() { }
 
-    public Product(string name, int price, Characteristic characteristic, User user)
+    public Product(string name, int price, Characteristic characteristic)
     {
         Name = name;
         Price = price;
         Characteristic = characteristic;
-        User = user;
     }
 
     [Key]
