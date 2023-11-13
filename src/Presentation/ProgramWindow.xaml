@@ -14,8 +14,8 @@
                 <MenuItem Header="Експортувати" Click="exportClick"/>
             </MenuItem>
             <MenuItem Header="Дані">
-                <MenuItem Header="Список клієнтів" Click="clientListClick"/>
-                <MenuItem Header="Список товарів" Click="productListClick"/>
+                <MenuItem Header="Список клієнтів" Click="openClientListWindow"/>
+                <MenuItem Header="Список товарів" Click="openProductListWindow"/>
             </MenuItem>
             <MenuItem Header="Інформація">
             </MenuItem>

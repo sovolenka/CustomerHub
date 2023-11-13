@@ -9,8 +9,8 @@
     <DockPanel>
         <!-- Menu at the top of the window -->
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Додати" Click="addClientClick" />
-            <MenuItem Header="Редагувати" Click="editClientClick" />
+            <MenuItem Header="Додати" Click="openAddClientWindow" />
+            <MenuItem Header="Редагувати" Click="openEditClientWindow" />
             <MenuItem Header="Видалити" Click="deleteClientClick" />
             <MenuItem Header="Фільтр" Click="filterClientClick" />
             <MenuItem Header="Кількість" Click="countClientClick" />

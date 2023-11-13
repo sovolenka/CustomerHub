@@ -46,9 +46,20 @@ namespace Presentation
 
         private void openClientListWindow(object sender, RoutedEventArgs e)
         {
+            // Створюємо екземпляр ClientListWindow
             ClientListWindow clientListWindow = new ClientListWindow();
-            clientListWindow.Owner = this; // Це встановлює головне вікно як батьківське для нового вікна
-            clientListWindow.ShowDialog(); // Показати вікно як модальне діалогове вікно
+
+            // Показуємо вікно
+            clientListWindow.Show();
+        }
+
+        private void openProductListWindow(object sender, RoutedEventArgs e)
+        {
+            // Створюємо екземпляр ClientListWindow
+            ClientListWindow productListWindow = new ClientListWindow();
+
+            // Показуємо вікно
+            productListWindow.Show();
         }
 
 

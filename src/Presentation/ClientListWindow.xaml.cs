@@ -24,14 +24,18 @@ namespace Presentation
             InitializeComponent();
         }
 
-        private void addClientClick(object sender, RoutedEventArgs e)
+        private void openAddClientWindow(object sender, RoutedEventArgs e)
         {
-            // Code to handle adding a new client
+            AddClientWindow addClientWindow = new AddClientWindow();
+
+            addClientWindow.Show();
         }
 
-        private void editClientClick(object sender, RoutedEventArgs e)
+        private void openEditClientWindow(object sender, RoutedEventArgs e)
         {
-            // Code to handle editing a client
+            EditClientWindow EditClientWindow = new EditClientWindow();
+
+            EditClientWindow.Show();
         }
 
         private void deleteClientClick(object sender, RoutedEventArgs e)

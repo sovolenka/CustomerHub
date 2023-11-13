@@ -5,15 +5,15 @@ namespace Presentation;
 
 public partial class AuthorizationWindow : Window
 {
-    private string _email = "";
-    private string _password = "";
+    private string email = "";
+    private string password = "";
 
     private void postTextBox(object sender, RoutedEventArgs e)
     {
         // Зберегти інформацію з TextBox "Пошта:"
         if (sender is TextBox textBox)
         {
-            _email = textBox.Text;
+            email = textBox.Text;
         }
     }
 
@@ -22,13 +22,13 @@ public partial class AuthorizationWindow : Window
         // Зберегти інформацію з PasswordBox "Пароль:"
         if (sender is PasswordBox passwordBox)
         {
-            _password = passwordBox.Password;
+            password = passwordBox.Password;
         }
     }
 
     private void logAccount(object sender, RoutedEventArgs e)
     {
-        if (!string.IsNullOrEmpty(_email) && !string.IsNullOrEmpty(_password))
+        if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
         {
             ProgramWindow programWindow = new ProgramWindow();
             this.Hide();
@@ -37,14 +37,15 @@ public partial class AuthorizationWindow : Window
         }
         else
         {
+            // Обробка ситуації, коли email або password є порожніми
         }
     }
 
     private void forgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
     {
-        ChangePassword changePassword = new ChangePassword();
+        ChangePassword newPassword = new ChangePassword();
         this.Hide();
-        changePassword.ShowDialog();
+        newPassword.ShowDialog();
         this.Close();
     }
 

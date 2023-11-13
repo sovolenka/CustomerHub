@@ -5,19 +5,21 @@ namespace Presentation
 {
     public partial class RegisterWindow : Window
     {
-        private string _email = "";
-        private string _password = "";
-        private string _confirmPassword = "";
+        private string email = "";
+        private string password = "";
+        private string confirmPassword = "";
         public RegisterWindow()
         {
             InitializeComponent();
         }
 
+
+
         private void newPostTextBox(object sender, RoutedEventArgs e)
         {
             if (sender is TextBox textBox)
             {
-                _email = textBox.Text;
+                email = textBox.Text;
             }
         }
 
@@ -25,7 +27,7 @@ namespace Presentation
         {
             if (sender is PasswordBox passwordBox)
             {
-                _password = passwordBox.Password;
+                password = passwordBox.Password;
             }
         }
 
@@ -33,13 +35,13 @@ namespace Presentation
         {
             if (sender is PasswordBox passwordBox)
             {
-                _confirmPassword = passwordBox.Password;
+                confirmPassword = passwordBox.Password;
             }
         }
 
-        private void createAccountButton(object sender, RoutedEventArgs e)
+        private void createAccount(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_email) && !string.IsNullOrWhiteSpace(_password) && _password == _confirmPassword)
+            if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password) && password == confirmPassword)
             {
                 // логіка створення акаунту
                 ProgramWindow programWindow = new ProgramWindow();
@@ -53,6 +55,11 @@ namespace Presentation
             }
         }
 
+        private void forgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
+        {
+            // Код для події MouseDown для TextBlock "Забули пароль?"
+        }
+
         private void logAccountMouseDown(object sender, RoutedEventArgs e)
         {
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
@@ -60,8 +67,6 @@ namespace Presentation
             authorizationWindow.ShowDialog();
             this.Close();
         }
-
-
     }
 }
 

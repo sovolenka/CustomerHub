@@ -15,26 +15,25 @@ using System.Windows.Shapes;
 namespace Presentation
 {
     /// <summary>
-    /// Interaction logic for AddClientWindow.xaml
+    /// Interaction logic for EditClientWindow.xaml
     /// </summary>
-    public partial class AddClientWindow : Window
+    public partial class EditClientWindow : Window
     {
-        public AddClientWindow()
+        public EditClientWindow()
         {
             InitializeComponent();
         }
 
-        private void addButtonClick(object sender, RoutedEventArgs e)
+        private void editButtonClick(object sender, RoutedEventArgs e)
         {
-            // Код для додавання нового клієнта
+            // Код для обробки натискання кнопки "Редагувати"
 
-            // MessageBox.Show("Клієнт збережений!");
+            // MessageBox.Show("Зміни збережено!");
         }
 
         private void cancelButtonClick(object sender, RoutedEventArgs e)
         {
-           this.Close(); 
+            this.Close(); 
         }
-
     }
 }

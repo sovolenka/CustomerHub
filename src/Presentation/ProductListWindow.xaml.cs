@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 
 namespace Presentation
 {
+    /// <summary>
+    /// Interaction logic for ProductListClick.xaml
+    /// </summary>
     public partial class ProductListClick : Window
     {
         public ProductListClick()
