@@ -5,6 +5,16 @@ namespace Data.Models;
 
 public class Product
 {
+    public Product() { }
+
+    public Product(string name, int price, Characteristic characteristic, User user)
+    {
+        Name = name;
+        Price = price;
+        Characteristic = characteristic;
+        User = user;
+    }
+
     [Key]
     public int Id { get; set; }
 
@@ -16,7 +26,6 @@ public class Product
     public int Price { get; set; }
 
     [Required]
-    [ForeignKey("CharacteristicId")]
     public Characteristic? Characteristic { get; set; }
 
     [Required]

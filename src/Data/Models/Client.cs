@@ -5,6 +5,34 @@ namespace Data.Models;
 
 public class Client
 {
+    public Client() { }
+
+    public Client
+    (
+        string firstName,
+        string secondname,
+        string thirdName,
+        string phoneNumber,
+        string email,
+        string address,
+        string factory,
+        DateOnly dateAdded,
+        ClientStatus status,
+        User user
+    )
+    {
+        FirstName = firstName;
+        SecondName = secondname;
+        ThirdName = thirdName;
+        PhoneNumber = phoneNumber;
+        Email = email;
+        Address = address;
+        Factory = factory;
+        DateAdded = dateAdded;
+        Status = status;
+        User = user;
+    }
+
     [Key]
     public int Id { get; set; }
 
@@ -41,6 +69,7 @@ public class Client
     public ClientStatus Status { get; set; }
 
     public List<Product> Products { get; set; } = new List<Product>();
+
     public List<Reminder> Reminders { get; set; } = new List<Reminder>();
 
     [Required]
