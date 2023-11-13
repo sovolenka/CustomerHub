@@ -9,6 +9,7 @@ public class CurrentUserService
     private SQLiteContext _context = SQLiteContextSingleton.Instance;
 
     public bool LoggedIn => _currentUser is not null;
+    public User? CurentUser => _currentUser;
 
     public bool LogIn(string email, byte[] passwordHash)
     {
