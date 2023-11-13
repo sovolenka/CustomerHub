@@ -6,7 +6,7 @@ public class User
 {
     public User() { }
 
-    public User(string email, string passworgHash)
+    public User(string email, byte[] passworgHash)
     {
         Email = email;
         PasswordHash = passworgHash;
@@ -20,7 +20,7 @@ public class User
     public string? Email { get; set; }
 
     [Required]
-    public string? PasswordHash { get; set; }
+    public byte[]? PasswordHash { get; set; }
 
     public List<Product> Products { get; set; } = new List<Product>();
 
