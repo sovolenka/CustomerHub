@@ -17,8 +17,7 @@ public class Client
         string address,
         string factory,
         DateOnly dateAdded,
-        ClientStatus status,
-        User user
+        ClientStatus status
     )
     {
         FirstName = firstName;
@@ -30,7 +29,6 @@ public class Client
         Factory = factory;
         DateAdded = dateAdded;
         Status = status;
-        User = user;
     }
 
     [Key]
