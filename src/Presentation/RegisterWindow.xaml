@@ -29,11 +29,11 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,100,0,0">
             
             <TextBlock Text="Пошта:" FontSize="14" Height="20" Background="#FFF4EEEE"/>
-            <TextBox x:Name="LoginTextBox" Width="231" LostFocus="newPostTextBox" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" FontSize="14" UndoLimit="20" AutomationProperties.HelpText="Пошта" />
+            <TextBox x:Name="LoginTextBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" FontSize="14" UndoLimit="20" AutomationProperties.HelpText="Пошта" />
             <TextBlock Text="Пароль:" FontSize="14" Height="20"/>
-            <PasswordBox x:Name="PasswordBox" Width="231" LostFocus="newPasswordTextBox" Height="30"  BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" />
+            <PasswordBox x:Name="PasswordBox" Width="231" Height="30"  BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" />
             <TextBlock Text="Підтвердіть пароль:" FontSize="14" Height="20"/>
-            <PasswordBox x:Name="AcceptPasswordBox" Width="231" LostFocus="acceptPasswordTextBox"  Height="30"  BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" AutomationProperties.HelpText="Уведіть пароль" AutomationProperties.AcceleratorKey=""/>
+            <PasswordBox x:Name="AcceptPasswordBox" Width="231" Height="30"  BorderBrush="#FFA3A0A0"  Background="#FFE2DCDC" AutomationProperties.HelpText="Уведіть пароль" AutomationProperties.AcceleratorKey=""/>
         </StackPanel>
 
         <Button Content="Створити Акаунт" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" Click="createAccount" Margin="0,270,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582" Background="#FF8F8383">

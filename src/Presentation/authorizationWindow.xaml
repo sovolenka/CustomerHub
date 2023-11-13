@@ -20,9 +20,9 @@
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0">
             <TextBlock Text="Пошта:" FontSize="14" Height="20"  />
-            <TextBox x:Name="LoginTextBox" Width="231" LostFocus="postTextBox" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
+            <TextBox x:Name="LoginTextBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
             <TextBlock Text="Пароль:" FontSize="14" Height="20"/>
-            <PasswordBox x:Name="PasswordBox" Width="231" LostFocus="passwordTextBox"  Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
+            <PasswordBox x:Name="PasswordBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
         </StackPanel>
 
         <Button Content="Увійти" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Click="logAccount" Margin="0,197,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582"/>

@@ -1,42 +1,31 @@
-﻿using System.Windows;
+﻿using Business.Services;
+using System.Windows;
 using System.Windows.Controls;
-
 
 namespace Presentation;
 
 public partial class AuthorizationWindow : Window
 {
-    private string email = "";
-    private string password = "";
+    CurrentUserService currentUserService;
+    private PasswordService passwordService;
 
-    private void postTextBox(object sender, RoutedEventArgs e)
+    public AuthorizationWindow()
     {
-        if (sender is TextBox textBox)
-        {
-            email = textBox.Text;
-        }
-    }
-
-    private void passwordTextBox(object sender, RoutedEventArgs e)
-    {
-        if (sender is PasswordBox passwordBox)
-        {
-            password = passwordBox.Password;
-        }
+        currentUserService = new CurrentUserService();
+        passwordService = new PasswordService();
+        InitializeComponent();
     }
 
     private void logAccount(object sender, RoutedEventArgs e)
     {
-        if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
+        // TODO: validate
+
+        if (currentUserService.LogIn(LoginTextBox.Text, passwordService.HashString(PasswordBox.Password)))
         {
             ProgramWindow programWindow = new ProgramWindow();
             this.Hide();
             programWindow.ShowDialog();
             this.Close();
-        }
-        else
-        {
-
         }
     }
 
@@ -55,10 +44,4 @@ public partial class AuthorizationWindow : Window
         registerWindow.ShowDialog();
         this.Close();
     }
-
-    public AuthorizationWindow()
-    {
-        InitializeComponent();
-    }
-
 }

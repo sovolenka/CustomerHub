@@ -1,56 +1,37 @@
-﻿using System.Windows;
+﻿using Business.Services;
+using Data.Models;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Presentation
 {
     public partial class RegisterWindow : Window
     {
-        private string email = "";
-        private string password = "";
-        private string confirmPassword = "";
+        private UserService userService;
+        private PasswordService passwordService;
+        private CurrentUserService currentUserService;
+
         public RegisterWindow()
         {
+            userService = new UserService();
+            passwordService = new PasswordService();
+            currentUserService = new CurrentUserService();  
             InitializeComponent();
-        }
-
-
-
-        private void newPostTextBox(object sender, RoutedEventArgs e)
-        {
-            if (sender is TextBox textBox)
-            {
-                email = textBox.Text;
-            }
-        }
-
-        private void newPasswordTextBox(object sender, RoutedEventArgs e)
-        {
-            if (sender is PasswordBox passwordBox)
-            {
-                password = passwordBox.Password;
-            }
-        }
-
-        private void acceptPasswordTextBox(object sender, RoutedEventArgs e)
-        {
-            if (sender is PasswordBox passwordBox)
-            {
-                confirmPassword = passwordBox.Password;
-            }
         }
 
         private void createAccount(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password) && password == confirmPassword)
-            {
-                ProgramWindow programWindow = new ProgramWindow();
-                this.Hide();
-                programWindow.ShowDialog();
-                this.Close();
-            }
-            else
-            {
+            // TODO: validate password via Validator
 
+            User? user = new User(LoginTextBox.Text, passwordService.HashString(PasswordBox.Password));
+            user = userService.Add(user);
+            
+            if (user is not null)
+            {
+                AuthorizationWindow authorizationWindow = new AuthorizationWindow();
+                Hide();
+                authorizationWindow.ShowDialog();
+                Close();
             }
         }
 
@@ -68,4 +49,3 @@ namespace Presentation
         }
     }
 }
-
