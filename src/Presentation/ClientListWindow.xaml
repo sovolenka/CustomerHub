@@ -1,0 +1,32 @@
+﻿<Window x:Class="Presentation.ClientListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="ClientListWindow" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Додати" Click="openAddClientWindow" />
+            <MenuItem Header="Редагувати" Click="openEditClientWindow" />
+            <MenuItem Header="Видалити" Click="deleteClientClick" />
+            <MenuItem Header="Фільтр" Click="filterClientClick" />
+            <MenuItem Header="Кількість" Click="countClientClick" />
+            <MenuItem Header="Аналіз" Click="analysisClientClick" />
+        </Menu>
+
+        <DataGrid AutoGenerateColumns="False" Height="Auto" Width="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата додавання" Binding="{Binding dateAdded}" Width="100"/>
+                <DataGridTextColumn Header="Підприємство" Binding="{Binding company}" Width="110"/>
+                <DataGridTextColumn Header="Адреса" Binding="{Binding address}" Width="120"/>
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding fullName}" Width="120"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="110"/>
+                <DataGridTextColumn Header="Електронна пошта" Binding="{Binding email}" Width="125"/>
+                <DataGridTextColumn Header="Нагадування" Binding="{Binding reminder}" Width="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
+

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Вікно авторизації" Height="450" Width="600" ResizeMode="NoResize">
+        Title="CustomerHub" Height="450" Width="600" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow">
     <Grid Background="#FFF4EEEE" Margin="10,10,10,10" RenderTransformOrigin="0.5,0.5">
         <Grid.RenderTransform>
             <TransformGroup>
@@ -18,10 +19,10 @@
         <TextBlock Text="Увійдіть в акаунт" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Margin="0,20,0,0" Height="50" Width="200"/>
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0">
-            <TextBlock Text="Пошта:" FontSize="14" Height="20"/>
-            <TextBox x:Name="LoginTextBox" Width="231" GotFocus="textBoxGotFocus" Height="30"/>
+            <TextBlock Text="Пошта:" FontSize="14" Height="20"  />
+            <TextBox x:Name="LoginTextBox" Width="231" LostFocus="postTextBox" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
             <TextBlock Text="Пароль:" FontSize="14" Height="20"/>
-            <PasswordBox x:Name="PasswordBox" Width="231" GotFocus="passwordBoxGotFocus" Password="" Height="30" RenderTransformOrigin="0.506,0.667"/>
+            <PasswordBox x:Name="PasswordBox" Width="231" LostFocus="passwordTextBox"  Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0" FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
         </StackPanel>
 
         <Button Content="Увійти" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Click="logAccount" Margin="0,197,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582"/>
