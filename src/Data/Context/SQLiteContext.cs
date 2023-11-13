@@ -11,7 +11,7 @@ public class SQLiteContext: DbContext
 
     public string DbPath { get; }
 
-    internal SQLiteContext()
+    public SQLiteContext()
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
