@@ -21,47 +21,36 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <!-- Додатковий рядок для кнопок -->
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ПІБ -->
         <Label Content="ПІБ:" Grid.Row="0" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="nameTextBox" Grid.Row="0" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Електронна пошта -->
         <Label Content="Електронна пошта:" Grid.Row="1" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="emailTextBox" Grid.Row="1" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Телефон -->
         <Label Content="Телефон:" Grid.Row="2" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="phoneTextBox" Grid.Row="2" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Адреса -->
         <Label Content="Адреса:" Grid.Row="3" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="addressTextBox" Grid.Row="3" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Підприємство -->
         <Label Content="Підприємство:" Grid.Row="4" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="enterpriseTextBox" Grid.Row="4" Grid.Column="1" Margin="0,10"/>
         
-        <!-- Товар -->
         <Label Content="Товар:" Grid.Row="5" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="productTextBox" Grid.Row="5" Grid.Column="1" Margin="0,10"/>
 
-
-        <!-- Нагадування -->
         <Label Content="Нагадування:" Grid.Row="6" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="reminderTextBox" Grid.Row="6" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Дата нагадування -->
         <Label Content="Дата нагадування:" Grid.Row="7" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <DatePicker x:Name="reminderDatePicker" Grid.Row="7" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Дата додавання -->
         <Label Content="Дата додавання:" Grid.Row="8" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <DatePicker x:Name="dateAddedPicker" Grid.Row="8" Grid.Column="1" Margin="0,10"/>
 
@@ -69,7 +58,7 @@
         <Label Content="Нотатки:" Grid.Row="9" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center"/>
         <TextBox x:Name="noteTextBox" Grid.Row="9" Grid.Column="1" Margin="0,10"/>
 
-        <!-- Кнопки Редагувати та Скасувати -->
+
         <StackPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <Button x:Name="editButton" Content="Редагувати" Margin="0,0,10,0" Click="editButtonClick"/>
             <Button x:Name="cancelButton" Content="Скасувати" Click="cancelButtonClick"/>

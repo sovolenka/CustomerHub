@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="ProductListClick" Height="450" Width="800">
     <DockPanel>
-        <!-- Menu at the top of the window -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Додати" Click="addProductClick" />
             <MenuItem Header="Редагувати" Click="editProductClick" />
@@ -17,7 +16,6 @@
             <MenuItem Header="Аналіз" Click="analysisProductClick" />
         </Menu>
 
-        <!-- Data Grid below the menu -->
         <DataGrid AutoGenerateColumns="False" Height="Auto" Width="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Назва" Binding="{Binding nameOfProduct}" Width="200"/>

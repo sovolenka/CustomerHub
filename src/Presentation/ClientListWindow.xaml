@@ -7,7 +7,6 @@
         mc:Ignorable="d"
         Title="ClientListWindow" Height="450" Width="800">
     <DockPanel>
-        <!-- Menu at the top of the window -->
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Додати" Click="openAddClientWindow" />
             <MenuItem Header="Редагувати" Click="openEditClientWindow" />
@@ -17,7 +16,6 @@
             <MenuItem Header="Аналіз" Click="analysisClientClick" />
         </Menu>
 
-        <!-- Data Grid below the menu -->
         <DataGrid AutoGenerateColumns="False" Height="Auto" Width="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Дата додавання" Binding="{Binding dateAdded}" Width="100"/>

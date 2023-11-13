@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
+
 namespace Presentation;
 
 public partial class AuthorizationWindow : Window
@@ -10,7 +11,6 @@ public partial class AuthorizationWindow : Window
 
     private void postTextBox(object sender, RoutedEventArgs e)
     {
-        // Зберегти інформацію з TextBox "Пошта:"
         if (sender is TextBox textBox)
         {
             email = textBox.Text;
@@ -19,7 +19,6 @@ public partial class AuthorizationWindow : Window
 
     private void passwordTextBox(object sender, RoutedEventArgs e)
     {
-        // Зберегти інформацію з PasswordBox "Пароль:"
         if (sender is PasswordBox passwordBox)
         {
             password = passwordBox.Password;
@@ -37,7 +36,7 @@ public partial class AuthorizationWindow : Window
         }
         else
         {
-            // Обробка ситуації, коли email або password є порожніми
+
         }
     }
 

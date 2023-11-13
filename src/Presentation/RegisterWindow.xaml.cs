@@ -43,7 +43,6 @@ namespace Presentation
         {
             if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password) && password == confirmPassword)
             {
-                // логіка створення акаунту
                 ProgramWindow programWindow = new ProgramWindow();
                 this.Hide();
                 programWindow.ShowDialog();
@@ -51,13 +50,13 @@ namespace Presentation
             }
             else
             {
-                // Обробка випадку, коли дані не введені або паролі не співпадають
+
             }
         }
 
         private void forgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
         {
-            // Код для події MouseDown для TextBlock "Забули пароль?"
+
         }
 
         private void logAccountMouseDown(object sender, RoutedEventArgs e)
