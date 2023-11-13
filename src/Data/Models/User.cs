@@ -4,6 +4,14 @@ namespace Data.Models;
 
 public class User
 {
+    public User() { }
+
+    public User(string email, string passworgHash)
+    {
+        Email = email;
+        PasswordHash = passworgHash;
+    }
+
     [Key]
     public int Id { get; set; }
 
@@ -12,8 +20,7 @@ public class User
     public string? Email { get; set; }
 
     [Required]
-    [RegularExpression("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$")]
-    public string? Password { get; set; }
+    public string? PasswordHash { get; set; }
 
     public List<Product> Products { get; set; } = new List<Product>();
 
