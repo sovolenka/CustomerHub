@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\icon-back.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\icon-back.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
   </ItemGroup>
 

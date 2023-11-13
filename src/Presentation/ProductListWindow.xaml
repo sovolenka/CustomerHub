@@ -1,0 +1,29 @@
+﻿<Window x:Class="Presentation.ProductListClick"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="ProductListClick" Height="450" Width="800">
+    <DockPanel>
+        <!-- Menu at the top of the window -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Додати" Click="addProductClick" />
+            <MenuItem Header="Редагувати" Click="editProductClick" />
+            <MenuItem Header="Видалити" Click="deleteProductClick" />
+            <MenuItem Header="Фільтр" Click="filterProductClick" />
+            <MenuItem Header="Кількість" Click="countProductClick" />
+            <MenuItem Header="Аналіз" Click="analysisProductClick" />
+        </Menu>
+
+        <!-- Data Grid below the menu -->
+        <DataGrid AutoGenerateColumns="False" Height="Auto" Width="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Назва" Binding="{Binding nameOfProduct}" Width="200"/>
+                <DataGridTextColumn Header="Ціна" Binding="{Binding priceOfProduct}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
+
