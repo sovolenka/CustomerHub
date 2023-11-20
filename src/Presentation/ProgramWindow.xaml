@@ -8,8 +8,11 @@
         Title="ProgramWindow" Height="450" Width="800">
     <Grid>
         <Menu>
-            <MenuItem Header="Акаунт"/>
-            <MenuItem Header="Файл">
+            <MenuItem Header="Акаунт">
+                <MenuItem Header="Редагувати" Click="openEditAccountWindow"/>
+                <MenuItem Header="Вийти" Click="logOutClick"/>
+            </MenuItem>
+                <MenuItem Header="Файл">
                 <MenuItem Header="Імпортувати" Click="importClick"/>
                 <MenuItem Header="Експортувати" Click="exportClick"/>
             </MenuItem>
@@ -22,7 +25,4 @@
         </Menu>
     </Grid>
 </Window>
-
-
-
 
