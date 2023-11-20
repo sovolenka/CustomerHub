@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Business.Services;
+using System.Windows;
 
 
 namespace Presentation
@@ -6,6 +7,8 @@ namespace Presentation
 
     public partial class ProgramWindow : Window
     {
+        private CurrentUserService _currentUserService = new();
+
         public ProgramWindow()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace Presentation
         {
             AuthorizationWindow authorizationWindow = new AuthorizationWindow();
             authorizationWindow.Show();
+            _currentUserService.LogOut();
             this.Close();
         }
 
