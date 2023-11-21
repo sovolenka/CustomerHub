@@ -1,51 +1,71 @@
-﻿using Business.Services;
+﻿using System;
+using Business.Services;
 using Data.Models;
 using System.Windows;
-using System.Windows.Controls;
+using Business.Validators;
+using Business.Validators.Exceptions;
 
-namespace Presentation
+namespace Presentation;
+
+public partial class RegisterWindow : Window
 {
-    public partial class RegisterWindow : Window
+    private readonly UserService _userService;
+    private readonly PasswordService _passwordService;
+
+    public RegisterWindow()
     {
-        private UserService userService;
-        private PasswordService passwordService;
-        private CurrentUserService currentUserService;
+        _userService = new UserService();
+        _passwordService = new PasswordService();
+        InitializeComponent();
+    }
 
-        public RegisterWindow()
+    private void CreateAccount(object sender, RoutedEventArgs e)
+    {
+        try
         {
-            userService = new UserService();
-            passwordService = new PasswordService();
-            currentUserService = new CurrentUserService();  
-            InitializeComponent();
+            EmailValidator.Validate(EmailTextBox.Text);
+        }
+        catch (InvalidEmailException)
+        {
+            ErrorTextBlock.Text = "Неправильний формат електронної пошти";
+            return;
         }
 
-        private void createAccount(object sender, RoutedEventArgs e)
+        if (PasswordBox.Password != ConfirmPasswordBox.Password)
         {
-            // TODO: validate password via Validator
-
-            User? user = new User(LoginTextBox.Text, passwordService.HashString(PasswordBox.Password));
-            user = userService.Add(user);
-            
-            if (user is not null)
-            {
-                AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-                Hide();
-                authorizationWindow.ShowDialog();
-                Close();
-            }
+            ErrorTextBlock.Text = "Пароль не співпадає";
+            return;
         }
 
-        private void forgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
+        try
         {
-
+            PasswordValidator.Validate(PasswordBox.Password);
+        }
+        catch (InvalidPasswordException)
+        {
+            ErrorTextBlock.Text = "Придумайте надійніший пароль";
+            return;
         }
 
-        private void logAccountMouseDown(object sender, RoutedEventArgs e)
-        {
-            AuthorizationWindow authorizationWindow = new AuthorizationWindow();
-            this.Hide();
-            authorizationWindow.ShowDialog();
-            this.Close();
-        }
+        User? user = new User(EmailTextBox.Text, _passwordService.HashString(PasswordBox.Password));
+        user = _userService.Add(user);
+
+        if (user is null) return;
+        AuthorizationWindow authorizationWindow = new();
+        Hide();
+        authorizationWindow.ShowDialog();
+        Close();
+    }
+
+    private void ForgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
+    {
+    }
+
+    private void LogAccountClick(object sender, RoutedEventArgs e)
+    {
+        AuthorizationWindow authorizationWindow = new();
+        Hide();
+        authorizationWindow.ShowDialog();
+        Close();
     }
 }

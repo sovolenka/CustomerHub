@@ -10,39 +10,34 @@ namespace Presentation
             InitializeComponent();
         }
 
-        private void openAddClientWindow(object sender, RoutedEventArgs e)
+        private void OpenAddClientWindow(object sender, RoutedEventArgs e)
         {
             AddClientWindow addClientWindow = new AddClientWindow();
 
             addClientWindow.Show();
         }
 
-        private void openEditClientWindow(object sender, RoutedEventArgs e)
+        private void OpenEditClientWindow(object sender, RoutedEventArgs e)
         {
-            EditClientWindow EditClientWindow = new EditClientWindow();
+            EditClientWindow editClientWindow = new EditClientWindow();
 
-            EditClientWindow.Show();
+            editClientWindow.Show();
         }
 
-        private void deleteClientClick(object sender, RoutedEventArgs e)
+        private void DeleteClientClick(object sender, RoutedEventArgs e)
         {
-
         }
 
-        private void filterClientClick(object sender, RoutedEventArgs e)
+        private void FilterClientClick(object sender, RoutedEventArgs e)
         {
-
         }
 
-        private void countClientClick(object sender, RoutedEventArgs e)
+        private void CountClientClick(object sender, RoutedEventArgs e)
         {
-
         }
 
-        private void analysisClientClick(object sender, RoutedEventArgs e)
+        private void AnalysisClientClick(object sender, RoutedEventArgs e)
         {
-
         }
-
     }
 }

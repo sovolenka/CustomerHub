@@ -8,25 +8,24 @@
         Title="ClientListWindow" Height="450" Width="800">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Додати" Click="openAddClientWindow" />
-            <MenuItem Header="Редагувати" Click="openEditClientWindow" />
-            <MenuItem Header="Видалити" Click="deleteClientClick" />
-            <MenuItem Header="Фільтр" Click="filterClientClick" />
-            <MenuItem Header="Кількість" Click="countClientClick" />
-            <MenuItem Header="Аналіз" Click="analysisClientClick" />
+            <MenuItem Header="Додати" Click="OpenAddClientWindow" />
+            <MenuItem Header="Редагувати" Click="OpenEditClientWindow" />
+            <MenuItem Header="Видалити" Click="DeleteClientClick" />
+            <MenuItem Header="Фільтр" Click="FilterClientClick" />
+            <MenuItem Header="Кількість" Click="CountClientClick" />
+            <MenuItem Header="Аналіз" Click="AnalysisClientClick" />
         </Menu>
 
-        <DataGrid AutoGenerateColumns="False" Height="Auto" Width="Auto">
+        <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата додавання" Binding="{Binding dateAdded}" Width="100"/>
-                <DataGridTextColumn Header="Підприємство" Binding="{Binding company}" Width="110"/>
-                <DataGridTextColumn Header="Адреса" Binding="{Binding address}" Width="120"/>
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding fullName}" Width="120"/>
-                <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="110"/>
-                <DataGridTextColumn Header="Електронна пошта" Binding="{Binding email}" Width="125"/>
-                <DataGridTextColumn Header="Нагадування" Binding="{Binding reminder}" Width="110"/>
+                <DataGridTextColumn Header="Дата додавання" Binding="{Binding dateAdded}" Width="100" />
+                <DataGridTextColumn Header="Підприємство" Binding="{Binding company}" Width="110" />
+                <DataGridTextColumn Header="Адреса" Binding="{Binding address}" Width="120" />
+                <DataGridTextColumn Header="ПІБ" Binding="{Binding fullName}" Width="120" />
+                <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="110" />
+                <DataGridTextColumn Header="Електронна пошта" Binding="{Binding email}" Width="125" />
+                <DataGridTextColumn Header="Нагадування" Binding="{Binding reminder}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
 </Window>
-

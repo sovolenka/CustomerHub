@@ -9,20 +9,20 @@
     <Grid>
         <Menu>
             <MenuItem Header="Акаунт">
-                <MenuItem Header="Редагувати" Click="openEditAccountWindow"/>
-                <MenuItem Header="Вийти" Click="logOutClick"/>
+                <MenuItem Header="Змінити пароль" Click="OpenEditAccountWindow">
+                </MenuItem>
+                <MenuItem Header="Вийти" Click="LogOutClick" />
             </MenuItem>
-                <MenuItem Header="Файл">
-                <MenuItem Header="Імпортувати" Click="importClick"/>
-                <MenuItem Header="Експортувати" Click="exportClick"/>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Імпортувати" Click="ImportClick" />
+                <MenuItem Header="Експортувати" Click="ExportClick" />
             </MenuItem>
             <MenuItem Header="Дані">
-                <MenuItem Header="Список клієнтів" Click="openClientListWindow"/>
-                <MenuItem Header="Список товарів" Click="openProductListWindow"/>
+                <MenuItem Header="Список клієнтів" Click="OpenClientListWindow" />
+                <MenuItem Header="Список товарів" Click="OpenProductListWindow" />
             </MenuItem>
             <MenuItem Header="Інформація">
             </MenuItem>
         </Menu>
     </Grid>
 </Window>
-
