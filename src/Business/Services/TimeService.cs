@@ -2,7 +2,8 @@
 
 public class TimeService
 {
-    public DateTime GetCurrentDateTime() {
+    public DateTime GetCurrentDateTime()
+    {
         return DateTime.Now;
     }
 }

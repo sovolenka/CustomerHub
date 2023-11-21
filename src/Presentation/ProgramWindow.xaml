@@ -1,0 +1,28 @@
+﻿<Window x:Class="Presentation.ProgramWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Presentation"
+        mc:Ignorable="d"
+        Title="ProgramWindow" Height="450" Width="800">
+    <Grid>
+        <Menu>
+            <MenuItem Header="Акаунт">
+                <MenuItem Header="Змінити пароль" Click="OpenEditAccountWindow">
+                </MenuItem>
+                <MenuItem Header="Вийти" Click="LogOutClick" />
+            </MenuItem>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Імпортувати" Click="ImportClick" />
+                <MenuItem Header="Експортувати" Click="ExportClick" />
+            </MenuItem>
+            <MenuItem Header="Дані">
+                <MenuItem Header="Список клієнтів" Click="OpenClientListWindow" />
+                <MenuItem Header="Список товарів" Click="OpenProductListWindow" />
+            </MenuItem>
+            <MenuItem Header="Інформація">
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Window>

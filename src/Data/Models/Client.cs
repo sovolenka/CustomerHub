@@ -10,7 +10,7 @@ public class Client
     public Client
     (
         string firstName,
-        string secondname,
+        string secondName,
         string thirdName,
         string phoneNumber,
         string email,
@@ -21,7 +21,7 @@ public class Client
     )
     {
         FirstName = firstName;
-        SecondName = secondname;
+        SecondName = secondName;
         ThirdName = thirdName;
         PhoneNumber = phoneNumber;
         Email = email;
@@ -51,7 +51,7 @@ public class Client
     public string? PhoneNumber { get; set; }
 
     [Required]
-    [RegularExpression("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")]
+    [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
     public string? Email { get; set; }
 
     [Required]

@@ -3,7 +3,7 @@ using Business.Validators.Exceptions;
 
 namespace Business.Validators;
 
-public class EmailValidator
+public static class EmailValidator
 {
     private const string EmailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
 

@@ -5,12 +5,13 @@ namespace Business.Services;
 
 public class ClientService
 {
-    private SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
     public Client? Add(Client client, User user)
     {
-        var usersClients = _context.Clients?.Where(c => (c.PhoneNumber == client.PhoneNumber || c.Email == client.Email) && c.User == user);
-        if (usersClients!.Count() != 0) return null;
+        var usersClients = _context.Clients?.Where(c =>
+            (c.PhoneNumber == client.PhoneNumber || c.Email == client.Email) && c.User == user);
+        if (usersClients!.Any()) return null;
 
         client.User = user;
         Client? added = _context.Clients?.Add(client).Entity;

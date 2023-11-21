@@ -5,7 +5,7 @@ namespace Business.Services;
 
 public class ProductService
 {
-    private SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
     public Product? Add(Product product, User user)
     {
