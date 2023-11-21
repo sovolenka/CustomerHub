@@ -5,8 +5,13 @@ namespace Business.Services;
 
 public class UserService
 {
-    private SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
+    public User? Get(int id)
+    {
+        return _context.Users!.Find(id);
+    }
+    
     public User? Add(User user)
     {
         if (ContainsEmail(user.Email!)) return null;
@@ -22,6 +27,7 @@ public class UserService
         {
             if (u.Email == email) return true;
         }
+
         return false;
     }
 
