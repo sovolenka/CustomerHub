@@ -5,7 +5,7 @@ namespace Business.Services;
 
 public class CharacteristicService
 {
-    private SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
     public Characteristic? Update(int productId, Characteristic characteristic)
     {
