@@ -37,7 +37,7 @@ public partial class AuthorizationWindow : Window
 
     private void ForgotPasswordTextBlockMouseDown(object sender, RoutedEventArgs e)
     {
-        ChangePassword newPassword = new();
+        ForgotPasswordWindow newPassword = new();
         Hide();
         newPassword.ShowDialog();
         Close();

@@ -26,10 +26,10 @@
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0">
             <TextBlock Text="Пошта:" FontSize="14" Height="20" />
             <TextBox x:Name="LoginTextBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"
-                     FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
+                     Background="#FFE2DCDC" FontSize="18" />
             <TextBlock Text="Пароль:" FontSize="14" Height="20" />
             <PasswordBox x:Name="PasswordBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"
-                         FontWeight="Bold" Background="#FFE2DCDC" FontSize="14" />
+                         FontWeight="Bold" Background="#FFE2DCDC" FontSize="18" />
         </StackPanel>
 
         <Button Content="Увійти" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Click="LogAccount"
