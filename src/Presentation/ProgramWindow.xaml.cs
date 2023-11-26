@@ -16,7 +16,7 @@ public partial class ProgramWindow : Window
 
     private void OpenEditAccountWindow(object sender, RoutedEventArgs e)
     {
-        EditPasswordWindow editAccountWindow = new();
+        UpdatePasswordWindow editAccountWindow = new();
         editAccountWindow.Show();
     }
 

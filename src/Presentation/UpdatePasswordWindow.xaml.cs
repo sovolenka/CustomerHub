@@ -8,13 +8,13 @@ using Data.Models;
 
 namespace Presentation;
 
-public partial class EditPasswordWindow : Window
+public partial class UpdatePasswordWindow : Window
 {
     private readonly AuthorizationService _authorizationService;
     private readonly UserService _userService;
     private readonly PasswordService _passwordService;
 
-    public EditPasswordWindow()
+    public UpdatePasswordWindow()
     {
         _authorizationService = new AuthorizationService();
         _userService = new UserService();

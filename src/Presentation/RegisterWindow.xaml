@@ -31,11 +31,12 @@
 
             <TextBlock Text="Пошта:" FontSize="14" Height="20" Background="#FFF4EEEE" />
             <TextBox x:Name="EmailTextBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"
-                     Background="#FFE2DCDC" FontSize="14" UndoLimit="20" AutomationProperties.HelpText="Пошта" />
+                     Background="#FFE2DCDC" FontSize="18" UndoLimit="20" AutomationProperties.HelpText="Пошта" />
             <TextBlock Text="Пароль:" FontSize="14" Height="20" />
-            <PasswordBox x:Name="PasswordBox" Width="231" Height="30" BorderBrush="#FFA3A0A0" Background="#FFE2DCDC" />
+            <PasswordBox x:Name="PasswordBox" Width="231" Height="30" FontSize="18" BorderBrush="#FFA3A0A0"
+                         Background="#FFE2DCDC" />
             <TextBlock Text="Підтвердіть пароль:" FontSize="14" Height="20" />
-            <PasswordBox x:Name="ConfirmPasswordBox" Width="231" Height="30" BorderBrush="#FFA3A0A0"
+            <PasswordBox x:Name="ConfirmPasswordBox" Width="231" Height="30" FontSize="18" BorderBrush="#FFA3A0A0"
                          Background="#FFE2DCDC" AutomationProperties.HelpText="Уведіть пароль"
                          AutomationProperties.AcceleratorKey="" />
         </StackPanel>
