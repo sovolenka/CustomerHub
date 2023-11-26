@@ -2,6 +2,7 @@
 using System.Windows;
 using Business.Services;
 using Data.Models;
+using Presentation.Events;
 
 namespace Presentation;
 
@@ -10,11 +11,16 @@ public partial class AddClientWindow : Window
     private readonly ClientService _clientService;
     private readonly TimeService _timeService;
 
+    // Event to notify that a new client is added
+    public event EventHandler<ClientEventArgs> ClientAdded;
+
     public AddClientWindow()
     {
         _clientService = new ClientService();
         _timeService = new TimeService();
+        ClientAdded += (sender, args) => { };
         InitializeComponent();
+        ClearField();
     }
 
     private void ClearField()
@@ -27,7 +33,7 @@ public partial class AddClientWindow : Window
         AddressTextBox.Text = "";
         FactoryTextBox.Text = "";
     }
-    
+
     private void AddButtonClick(object sender, RoutedEventArgs e)
     {
         // TODO: Add validation
@@ -44,13 +50,28 @@ public partial class AddClientWindow : Window
             ClientStatus.Active
         );
 
-        _clientService.Add(client, AuthorizationService.AuthorizedUser!);
-        ErrorTextBlock.Text = "Христина успішно додана!";
-        ClearField();
+        Client? added = _clientService.Add(client, AuthorizationService.AuthorizedUser!);
+        if (added is null)
+        {
+            ErrorTextBlock.Text = "Помилка при додаванні клієнта";
+        }
+        else
+        {
+            // Notify subscribers (e.g., the ClientListWindow) that a new client is added
+            OnClientAdded(new ClientEventArgs(added));
+            ErrorTextBlock.Text = "Клієнт успішно доданий";
+            ClearField();
+        }
     }
 
     private void CancelButtonClick(object sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    // Method to raise the event
+    protected virtual void OnClientAdded(ClientEventArgs e)
+    {
+        ClientAdded?.Invoke(this, e);
     }
 }

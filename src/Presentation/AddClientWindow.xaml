@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="AddClientWindow" Height="460" Width="500">
+        Title="AddClientWindow" Height="450" Width="500">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -26,10 +26,10 @@
 
         <Label Content="Ім'я:" Grid.Row="0" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center" />
         <TextBox x:Name="FirstNameTextBox" Grid.Row="0" Grid.Column="1" Margin="0,10" />
-        
+
         <Label Content="Прізвище:" Grid.Row="1" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center" />
         <TextBox x:Name="SecondNameTextBox" Grid.Row="1" Grid.Column="1" Margin="0,10" />
-        
+
         <Label Content="По батькові:" Grid.Row="2" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center" />
         <TextBox x:Name="ThirdNameTextBox" Grid.Row="2" Grid.Column="1" Margin="0,10" />
 
@@ -44,13 +44,13 @@
 
         <Label Content="Підприємство:" Grid.Row="6" Grid.Column="0" Margin="0,10,10,10" VerticalAlignment="Center" />
         <TextBox x:Name="FactoryTextBox" Grid.Row="6" Grid.Column="1" Margin="0,10" />
-        
+
         <TextBlock x:Name="ErrorTextBlock" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Foreground="Red"
                    Margin="0,10" />
 
         <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal"
                     HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button x:Name="AddButton" Content="Додати" Margin="0,0,10,0" Click="AddButtonClick" />
+            <Button x:Name="AddButton" Content="Додати" Margin="0,0,20,0" Click="AddButtonClick" />
             <Button x:Name="CancelButton" Content="Скасувати" Click="CancelButtonClick" />
         </StackPanel>
     </Grid>
