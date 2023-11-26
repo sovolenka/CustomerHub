@@ -5,7 +5,9 @@ namespace Data.Models;
 
 public class Client
 {
-    public Client() { }
+    public Client()
+    {
+    }
 
     public Client
     (
@@ -31,8 +33,7 @@ public class Client
         Status = status;
     }
 
-    [Key]
-    public int Id { get; set; }
+    [Key] public int Id { get; set; }
 
     [Required]
     [MinLength(2)]
@@ -54,28 +55,23 @@ public class Client
     [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
     public string? Email { get; set; }
 
-    [Required]
-    public string? Address { get; set; }
+    [Required] public string? Address { get; set; }
 
-    [Required]
-    public string? Factory { get; set; }
+    [Required] public string? Factory { get; set; }
 
-    [Required]
-    public DateOnly DateAdded { get; set; }
+    [Required] public DateOnly DateAdded { get; set; } = DateOnly.FromDateTime(DateTime.Now);
 
-    [Required]
-    public ClientStatus Status { get; set; }
+    [Required] public ClientStatus Status { get; set; } = ClientStatus.Active;
 
-    public List<Product> Products { get; set; } = new List<Product>();
+    public List<Product> Products { get; set; } = new();
 
-    public List<Reminder> Reminders { get; set; } = new List<Reminder>();
+    public List<Reminder> Reminders { get; set; } = new();
 
-    [Required]
-    [ForeignKey("UserId")]
-    public User? User { get; set; }
+    [Required] [ForeignKey("UserId")] public User? User { get; set; }
 }
 
 public enum ClientStatus
 {
-    Active, Inactive
+    Active,
+    Inactive
 }
