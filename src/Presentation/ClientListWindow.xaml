@@ -11,7 +11,7 @@
             <MenuItem Header="Додати" Click="OpenAddClientWindow" />
             <MenuItem Header="Редагувати" Click="OpenEditClientWindow" IsEnabled="{Binding C}" />
             <MenuItem Header="Видалити" Click="DeleteClientClick" IsEnabled="{Binding IsRowSelected}" />
-            <MenuItem Header="Фільтр" Click="FilterClientClick" />
+            <MenuItem Header="Пошук" Click="SearchClientClick" />
             <MenuItem Header="Кількість" Click="CountClientClick" />
             <MenuItem Header="Аналіз" Click="AnalysisClientClick" />
         </Menu>

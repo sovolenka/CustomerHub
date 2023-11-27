@@ -68,8 +68,11 @@ namespace Presentation
             ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
         }
 
-        private void FilterClientClick(object sender, RoutedEventArgs e)
+        private void SearchClientClick(object sender, RoutedEventArgs e)
         {
+            ClientSearchWindow clientSearchWindow = new ();
+            clientSearchWindow.SearchApplied += OnPredicateUpdate;
+            clientSearchWindow.Show();
         }
 
         private void CountClientClick(object sender, RoutedEventArgs e)
