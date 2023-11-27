@@ -47,6 +47,12 @@ namespace Presentation
 
         private void OpenEditClientWindow(object sender, RoutedEventArgs e)
         {
+            if (ClientList.SelectedItem is null)
+            {
+                MessageBox.Show("Виберіть клієнта для редагування");
+                return;
+            }
+
             Client selectedClient = (Client)ClientList.SelectedItem;
             UpdateClientWindow updateClientWindow = new UpdateClientWindow(selectedClient);
             updateClientWindow.ClientAdded += OnClientsUpdate;
@@ -55,6 +61,12 @@ namespace Presentation
 
         private void DeleteClientClick(object sender, RoutedEventArgs e)
         {
+            if (ClientList.SelectedItem is null)
+            {
+                MessageBox.Show("Виберіть клієнта для видалення");
+                return;
+            }
+
             Client selectedClient = (Client)ClientList.SelectedItem;
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Ви впевнені, що хочете видалити {selectedClient.FirstName} {selectedClient.SecondName}?",
