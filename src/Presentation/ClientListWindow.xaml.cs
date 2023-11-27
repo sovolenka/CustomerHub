@@ -56,12 +56,10 @@ namespace Presentation
         private void DeleteClientClick(object sender, RoutedEventArgs e)
         {
             Client selectedClient = (Client)ClientList.SelectedItem;
-
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Ви впевнені, що хочете видалити {selectedClient.FirstName} {selectedClient.SecondName}?",
                 "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.No) return;
-
             _clientService.Remove(selectedClient);
             ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
         }

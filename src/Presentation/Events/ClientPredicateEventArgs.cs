@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Data.Models;
 
 namespace Presentation.Events;

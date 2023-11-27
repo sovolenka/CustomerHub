@@ -43,7 +43,7 @@ public class ClientService
     {
         return _context.Clients!.Where(client => client.User == user).ToList();
     }
-    
+
     public static bool ClientContains(Client client, string query)
     {
         query = query.ToLower();
