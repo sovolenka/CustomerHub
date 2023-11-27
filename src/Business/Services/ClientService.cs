@@ -43,4 +43,18 @@ public class ClientService
     {
         return _context.Clients!.Where(client => client.User == user).ToList();
     }
+
+    public static bool ClientContains(Client client, string query)
+    {
+        query = query.ToLower();
+        return client.FirstName!.ToLower().Contains(query) ||
+               client.SecondName!.ToLower().Contains(query) ||
+               client.ThirdName!.ToLower().Contains(query) ||
+               client.PhoneNumber!.ToLower().Contains(query) ||
+               client.Email!.ToLower().Contains(query) ||
+               client.Address!.ToLower().Contains(query) ||
+               client.Factory!.ToLower().Contains(query) ||
+               client.DateAdded.ToString().ToLower().Contains(query) ||
+               client.Status.ToString().ToLower().Contains(query);
+    }
 }

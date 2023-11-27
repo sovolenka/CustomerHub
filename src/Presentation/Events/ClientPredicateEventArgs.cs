@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 using Data.Models;
 
 namespace Presentation.Events;
 
 public class ClientPredicateEventArgs : EventArgs
 {
-    public Predicate<Client> Predicate { get; set; }
+    public Predicate<Client>? Predicate { get; set; }
 
-    public ClientPredicateEventArgs(Predicate<Client> predicate)
+    public ClientPredicateEventArgs(Predicate<Client>? predicate)
     {
         Predicate = predicate;
     }
