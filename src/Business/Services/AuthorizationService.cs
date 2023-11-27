@@ -1,4 +1,4 @@
-﻿using Data.Context;
+using Data.Context;
 using Data.Models;
 
 namespace Business.Services;

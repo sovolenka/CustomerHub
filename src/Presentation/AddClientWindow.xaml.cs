@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows;
 using Business.Services;
 using Data.Models;
@@ -10,7 +10,7 @@ public partial class AddClientWindow : Window
 {
     private readonly ClientService _clientService;
     private readonly TimeService _timeService;
-
+    
     // Event to notify that a new client is added
     public event EventHandler<ClientEventArgs> ClientAdded;
 
