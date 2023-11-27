@@ -1,29 +1,26 @@
-﻿using Data.Models;
-using Presentation.Events;
+﻿using Presentation.Events;
 using System;
 using System.Linq;
 using System.Windows;
+using Business.Services;
 
 namespace Presentation;
 
-/// <summary>
-/// Interaction logic for ClientSearchWindow.xaml
-/// </summary>
-public partial class ClientSearchWindow : Window
+public partial class SearchWindow : Window
 {
     public event EventHandler<ClientPredicateEventArgs> SearchApplied;
 
-    public ClientSearchWindow()
+    public SearchWindow()
     {
         SearchApplied += (sender, args) => { };
         InitializeComponent();
     }
 
-    public void SearchButtonClick(object sender, RoutedEventArgs e)
+    private void SearchButtonClick(object sender, RoutedEventArgs e)
     {
         string[] words = SearchTextBox.Text.Split(' ');
-        OnSearchApplied(new ClientPredicateEventArgs(
-            c => c.GetType().GetFields().Where(f => words.Any(w => w == f.ToString())).Any()));
+        OnSearchApplied(new ClientPredicateEventArgs(c =>
+            words.Any(w => ClientService.ClientContains(c, w))));
         Close();
     }
 

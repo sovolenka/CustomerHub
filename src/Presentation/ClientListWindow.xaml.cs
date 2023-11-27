@@ -6,15 +6,11 @@ using Data.Models;
 using Presentation.Events;
 
 
-
 namespace Presentation
 {
     public partial class ClientListWindow : Window
     {
         private readonly ClientService _clientService;
-
-        // Filter predicate
-        private Predicate<Client>? _filterPredicate;
 
         public ClientListWindow()
         {
@@ -33,19 +29,20 @@ namespace Presentation
         // Event handler for the ClientAdded event
         private void OnClientsUpdate(object? sender, ClientEventArgs e)
         {
-            // Refresh or update your ClientList here
-            // You may need to retrieve the updated data from the database
-            ClientList.ItemsSource = _filterPredicate is null
-                ? _clientService.GetAll(AuthorizationService.AuthorizedUser!)
-                : _clientService.GetAll(AuthorizationService.AuthorizedUser!)
-                    .Where(client => _filterPredicate(client));
+            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
         }
 
         private void OnPredicateUpdate(object? sender, ClientPredicateEventArgs e)
         {
-            _filterPredicate = e.Predicate;
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!)
-                .Where(client => _filterPredicate(client));
+            if (e.Predicate is null)
+            {
+                ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            }
+            else
+            {
+                ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!)
+                    .Where(client => e.Predicate(client));
+            }
         }
 
         private void OpenEditClientWindow(object sender, RoutedEventArgs e)
@@ -59,25 +56,26 @@ namespace Presentation
         private void DeleteClientClick(object sender, RoutedEventArgs e)
         {
             Client selectedClient = (Client)ClientList.SelectedItem;
-            
+
             MessageBoxResult messageBoxResult = MessageBox.Show(
                 $"Ви впевнені, що хочете видалити {selectedClient.FirstName} {selectedClient.SecondName}?",
                 "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.No) return;
-            
+
             _clientService.Remove(selectedClient);
             ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
         }
 
         private void SearchClientClick(object sender, RoutedEventArgs e)
         {
-            ClientSearchWindow clientSearchWindow = new ();
-            clientSearchWindow.SearchApplied += OnPredicateUpdate;
-            clientSearchWindow.Show();
+            SearchWindow searchWindow = new();
+            searchWindow.SearchApplied += OnPredicateUpdate;
+            searchWindow.Show();
         }
 
-        private void CountClientClick(object sender, RoutedEventArgs e)
+        private void AllClientsClick(object sender, RoutedEventArgs e)
         {
+            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
         }
 
         private void AnalysisClientClick(object sender, RoutedEventArgs e)
