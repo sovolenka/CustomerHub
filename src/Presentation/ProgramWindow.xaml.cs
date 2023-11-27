@@ -1,4 +1,4 @@
-﻿using Business.Services;
+using Business.Services;
 using System.Windows;
 
 
@@ -16,8 +16,8 @@ public partial class ProgramWindow : Window
 
     private void OpenEditAccountWindow(object sender, RoutedEventArgs e)
     {
-        EditPasswordWindow editAccountWindow = new();
-        editAccountWindow.Show();
+        UpdatePasswordWindow updateAccountWindow = new();
+        updateAccountWindow.Show();
     }
 
     private void LogOutClick(object sender, RoutedEventArgs e)

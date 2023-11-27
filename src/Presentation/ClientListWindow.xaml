@@ -1,30 +1,33 @@
-﻿<Window x:Class="Presentation.ClientListWindow"
+<Window x:Class="Presentation.ClientListWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="ClientListWindow" Height="450" Width="800">
+        Title="ClientListWindow" Height="450" Width="1000">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Додати" Click="OpenAddClientWindow" />
-            <MenuItem Header="Редагувати" Click="OpenEditClientWindow" />
-            <MenuItem Header="Видалити" Click="DeleteClientClick" />
-            <MenuItem Header="Фільтр" Click="FilterClientClick" />
+            <MenuItem Header="Редагувати" Click="OpenEditClientWindow" IsEnabled="{Binding C}" />
+            <MenuItem Header="Видалити" Click="DeleteClientClick" IsEnabled="{Binding IsRowSelected}" />
+            <MenuItem Header="Пошук" Click="SearchClientClick" />
             <MenuItem Header="Кількість" Click="CountClientClick" />
             <MenuItem Header="Аналіз" Click="AnalysisClientClick" />
         </Menu>
 
-        <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto">
+        <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата додавання" Binding="{Binding dateAdded}" Width="100" />
-                <DataGridTextColumn Header="Підприємство" Binding="{Binding company}" Width="110" />
-                <DataGridTextColumn Header="Адреса" Binding="{Binding address}" Width="120" />
-                <DataGridTextColumn Header="ПІБ" Binding="{Binding fullName}" Width="120" />
-                <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="110" />
-                <DataGridTextColumn Header="Електронна пошта" Binding="{Binding email}" Width="125" />
-                <DataGridTextColumn Header="Нагадування" Binding="{Binding reminder}" Width="110" />
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding FirstName}" Width="110" />
+                <DataGridTextColumn Header="Прізвище" Binding="{Binding SecondName}" Width="100" />
+                <DataGridTextColumn Header="По-батькові" Binding="{Binding ThirdName}" Width="120" />
+                <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="110" />
+                <DataGridTextColumn Header="Електронна пошта" Binding="{Binding Email}" Width="125" />
+                <DataGridTextColumn Header="Адреса" Binding="{Binding Address}" Width="110" />
+                <DataGridTextColumn Header="Підприємство" Binding="{Binding Factory}" Width="110" />
+                <DataGridTextColumn Header="Дата додавання" Binding="{Binding DateAdded}" Width="110"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="110" />
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

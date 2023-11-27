@@ -1,4 +1,4 @@
-﻿using Data.Context;
+using Data.Context;
 using Data.Models;
 
 namespace Business.Services;
@@ -30,7 +30,6 @@ public class AuthorizationService
 
     public bool LogOut()
     {
-        Console.WriteLine("Logged out");
         if (!LoggedIn) return false;
         AuthorizedUser = null;
         return true;
