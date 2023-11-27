@@ -57,4 +57,14 @@ public class ClientService
                client.DateAdded.ToString().ToLower().Contains(query) ||
                client.Status.ToString().ToLower().Contains(query);
     }
+
+    public int GetActiveClientsCount(User user)
+    {
+        return _context.Clients?.Count(client => client.User == user && client.Status == ClientStatus.Active) ?? 0;
+    }
+
+    public int GetInactiveClientsCount(User user)
+    {
+        return _context.Clients?.Count(client => client.User == user && client.Status == ClientStatus.Inactive) ?? 0;
+    }
 }
