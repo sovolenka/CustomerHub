@@ -7,13 +7,13 @@ public class ClientService
 {
     private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
-    public Client? Add(Client client, User user)
+    public Client? Add(Client client, User? user = null)
     {
         var usersClients = _context.Clients?.Where(c =>
             (c.PhoneNumber == client.PhoneNumber || c.Email == client.Email) && c.User == user);
         if (usersClients!.Any()) return null;
 
-        client.User = user;
+        if (user is not null) client.User = user;
         Client? added = _context.Clients?.Add(client).Entity;
         _context.SaveChanges();
         return added;

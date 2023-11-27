@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Context;
 
-public class SQLiteContext: DbContext
+public sealed class SQLiteContext: DbContext
 {
     public DbSet<User>? Users { get; set; }
     public DbSet<Client>? Clients { get; set; }

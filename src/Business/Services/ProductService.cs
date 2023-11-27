@@ -7,9 +7,9 @@ public class ProductService
 {
     private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
-    public Product? Add(Product product, User user)
+    public Product? Add(Product product, User? user = null)
     {
-        product.User = user;
+        if (user is not null) product.User = user;
         Product? added = _context.Products?.Add(product).Entity;
         return added;
     }
