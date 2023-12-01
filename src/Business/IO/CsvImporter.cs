@@ -6,10 +6,10 @@ namespace Business.IO;
 
 public class CsvImporter
 {
-    public static List<T> ImportFromCsv<T>(string filePath)
+    public static IEnumerable<T> ImportFromCsv<T>(string filePath)
     {
-        using var reader = new StreamReader(filePath);
-        using var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
-        return csv.GetRecords<T>().ToList();
+        var reader = new StreamReader(filePath);
+        var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture));
+        return csv.GetRecords<T>();
     }
 }

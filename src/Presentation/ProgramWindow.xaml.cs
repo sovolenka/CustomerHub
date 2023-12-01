@@ -35,24 +35,20 @@ public partial class ProgramWindow : Window
     {
         // open folder dialog to select directory
         var dialog = new System.Windows.Forms.FolderBrowserDialog();
-        System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-        if (result == System.Windows.Forms.DialogResult.OK)
-        {
-            string directory = dialog.SelectedPath;
-            _csvService.ImportFromCsv(directory);
-        }
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ImportFromCsv(directory);
     }
 
     private void ExportClick(object sender, RoutedEventArgs e)
     {
         // open folder dialog to select directory
         var dialog = new System.Windows.Forms.FolderBrowserDialog();
-        System.Windows.Forms.DialogResult result = dialog.ShowDialog();
-        if (result == System.Windows.Forms.DialogResult.OK)
-        {
-            string directory = dialog.SelectedPath;
-            _csvService.ExportToCsv(directory);
-        }
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ExportToCsv(directory);
     }
 
     private void OpenClientListWindow(object sender, RoutedEventArgs e)
