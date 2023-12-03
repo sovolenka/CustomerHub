@@ -6,17 +6,17 @@ public class User
 {
     public User() { }
 
-    public User(string email, byte[] passworgHash)
+    public User(string email, byte[] passwordHash)
     {
         Email = email;
-        PasswordHash = passworgHash;
+        PasswordHash = passwordHash;
     }
 
     [Key]
     public int Id { get; set; }
 
     [Required]
-    [RegularExpression("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")]
+    [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")]
     public string? Email { get; set; }
 
     [Required]

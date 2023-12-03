@@ -16,7 +16,7 @@ namespace Presentation
         {
             _clientService = new ClientService();
             InitializeComponent();
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
         private void OpenAddClientWindow(object sender, RoutedEventArgs e)
@@ -29,18 +29,18 @@ namespace Presentation
         // Event handler for the ClientAdded event
         private void OnClientsUpdate(object? sender, ClientEventArgs e)
         {
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
         private void OnPredicateUpdate(object? sender, ClientPredicateEventArgs e)
         {
             if (e.Predicate is null)
             {
-                ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+                ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
             }
             else
             {
-                ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!)
+                ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!)
                     .Where(client => e.Predicate(client));
             }
         }
@@ -73,7 +73,7 @@ namespace Presentation
                 "Delete Confirmation", MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.No) return;
             _clientService.Remove(selectedClient);
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
         private void SearchClientClick(object sender, RoutedEventArgs e)
@@ -85,7 +85,7 @@ namespace Presentation
 
         private void AllClientsClick(object sender, RoutedEventArgs e)
         {
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
         private void AnalysisClientClick(object sender, RoutedEventArgs e)
