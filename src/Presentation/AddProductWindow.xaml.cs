@@ -17,4 +17,14 @@ public partial class AddProductWindow : Window
         ProductAdded += (sender, args) => { };
         InitializeComponent();
     }
+
+    private void AddButtonClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CancelButtonClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }

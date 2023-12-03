@@ -94,4 +94,19 @@ public partial class ProductListWindow : Window
     private void AnalysisProductClick(object sender, RoutedEventArgs e)
     {
     }
+
+    private void AddProductClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void EditProductClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void AllProductClick(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
+    }
 }
