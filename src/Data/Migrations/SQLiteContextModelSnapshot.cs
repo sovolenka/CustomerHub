@@ -216,7 +216,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Product", b =>
                 {
-                    b.HasOne("Data.Models.Client", null)
+                    b.HasOne("Data.Models.Client", "Client")
                         .WithMany("Products")
                         .HasForeignKey("ClientId");
 
@@ -225,6 +225,8 @@ namespace Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");
 
                     b.Navigation("User");
                 });
