@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="ProgramWindow" Height="450" Width="800">
+        Title="CustomerHub" Height="450" Width="800" MinHeight="300" WindowStartupLocation="CenterScreen">
     <Grid>
         <Menu>
             <MenuItem Header="Акаунт">
-                <MenuItem Header="Змінити пароль" Click="OpenEditAccountWindow">
+                <MenuItem Header="Змінити пароль" Click="OpenEditAccountWindow" >
                 </MenuItem>
                 <MenuItem Header="Вийти" Click="LogOutClick" />
             </MenuItem>
@@ -20,6 +20,8 @@
             <MenuItem Header="Дані">
                 <MenuItem Header="Список клієнтів" Click="OpenClientListWindow" />
                 <MenuItem Header="Список товарів" Click="OpenProductListWindow" />
+            </MenuItem>
+            <MenuItem Header="Аналіз" Click ="AnalysisClick">
             </MenuItem>
             <MenuItem Header="Інформація">
             </MenuItem>

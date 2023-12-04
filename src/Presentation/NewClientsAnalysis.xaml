@@ -1,0 +1,36 @@
+﻿<Page x:Class="Presentation.NewClientsAnalysis"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Нові клієнти">
+
+    <Grid Background="#FFF0F0F0" Margin="0,0,0,0">
+        <StackPanel HorizontalAlignment="Left" Margin="20,0,0,0">
+            <TextBlock Text="Початкова дата:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker x:Name="StartDatePicker" SelectedDate="{Binding StartDate}" Width="125" FontFamily="Arial" FontSize="14" Cursor="Arrow" FirstDayOfWeek="Monday" OpacityMask="#FFF4EEEE" ScrollViewer.HorizontalScrollBarVisibility="Visible" Background="#FFDFD6D6" AutomationProperties.HelpText="Введіть початкову дату" AutomationProperties.IsColumnHeader="True" FontWeight="Bold" BorderBrush="#FFDFD6D6"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Margin="145,0,0,0">
+            <TextBlock Text="Кінцева дата:" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <DatePicker x:Name="EndDatePicker" SelectedDate="{Binding EndDate}" Width="125" FontFamily="Arial" FontSize="14" Text="Виберіть дату" SelectedDateFormat="Short" FirstDayOfWeek="Monday" Background="#FFDFD6D6" BorderBrush="#FFDFD6D6" OpacityMask="Black" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Visible" Language="uk-UA" FontWeight="Bold"/>
+        </StackPanel>
+        <lvc:CartesianChart Series="{Binding ColumnSeriesCollection}" Margin="0,51,0,0" BorderBrush="Black" FontFamily="Arial" Background="#FFB5A9A9">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Labels="{Binding Labels}" Foreground="Black" FontSize="16" />
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Кількість клієнтів">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator Step="1" IsEnabled="False" />
+                    </lvc:Axis.Separator>
+                    <lvc:Axis.FontSize>14</lvc:Axis.FontSize>
+                    <lvc:Axis.Foreground>black</lvc:Axis.Foreground>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
+    </Grid>
+</Page>
