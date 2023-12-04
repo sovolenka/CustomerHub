@@ -4,6 +4,8 @@ using Presentation.Events;
 using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Presentation;
 
@@ -92,6 +94,11 @@ public partial class ProductListWindow : Window
         addProductWindow.Show();
     }
 
+    private void SearchClientClick(object sender, RoutedEventArgs e)
+    {
+        SearchWindow searchWindow = new();
+        searchWindow.Show();
+    }
     private void EditProductClick(object sender, RoutedEventArgs e)
     {
         if (ProductList.SelectedItem is null)
@@ -106,12 +113,10 @@ public partial class ProductListWindow : Window
         updateClientWindow.Show();
     }
 
+
     private void AllProductClick(object sender, RoutedEventArgs e)
     {
         ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
     }
 
-    private void AnalysisProductClick(object sender, RoutedEventArgs e)
-    {
-    }
 }
