@@ -13,11 +13,9 @@
             <MenuItem Header="Видалити" Click="DeleteClientClick" IsEnabled="{Binding IsRowSelected}" />
             <MenuItem Header="Пошук" Click="SearchClientClick" />
             <MenuItem Header="Всі" Click="AllClientsClick" />
-            <MenuItem Header="Аналіз">
-                <MenuItem Header="Активний/неактивний" Click="ActiveInactiveClientWindow" />
-            </MenuItem>
+            <MenuItem Header="Аналіз" Click="AnalysisClientClick" />
         </Menu>
-
+            
         <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ім'я" Binding="{Binding FirstName}" Width="110" />

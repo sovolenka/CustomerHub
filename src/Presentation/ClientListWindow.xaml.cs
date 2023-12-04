@@ -21,7 +21,7 @@ public partial class ClientListWindow : Window
 
     private void OpenAddClientWindow(object sender, RoutedEventArgs e)
     {
-        AddClientWindow addClientWindow = new AddClientWindow();
+        AddClientWindow addClientWindow = new();
         addClientWindow.ClientAdded += OnClientsUpdate;
         addClientWindow.Show();
     }
@@ -54,7 +54,7 @@ public partial class ClientListWindow : Window
         }
 
         Client selectedClient = (Client)ClientList.SelectedItem;
-        UpdateClientWindow updateClientWindow = new UpdateClientWindow(selectedClient);
+        UpdateClientWindow updateClientWindow = new (selectedClient);
         updateClientWindow.ClientAdded += OnClientsUpdate;
         updateClientWindow.Show();
     }
@@ -90,11 +90,7 @@ public partial class ClientListWindow : Window
 
     private void AnalysisClientClick(object sender, RoutedEventArgs e)
     {
-    }
-
-    private void ActiveInactiveClientWindow(object sender, RoutedEventArgs e)
-    {
-        ActiveInactiveClientWindow activeInactiveClientWindow = new();
-        activeInactiveClientWindow.Show();
+        AnalysisWindow analysisWindow = new();
+        analysisWindow.Show();
     }
 }

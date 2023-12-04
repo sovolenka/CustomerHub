@@ -8,10 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\CalendarIcon.png" />
     <None Remove="Icons\icon-back.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Icons\CalendarIcon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\icon-back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
