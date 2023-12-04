@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="AddProductWindow" Height="550" Width="500">
-    <Grid Margin="0,0,10,0">
+        Height="550" Width="500" MinHeight="550" MinWidth="500">
+    <Grid Margin="0,0,10,0" Background="#FFF4EEEE" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />

@@ -83,9 +83,5 @@ public partial class ClientListWindow : Window
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
-    private void AnalysisClientClick(object sender, RoutedEventArgs e)
-    {
-        AnalysisWindow analysisWindow = new();
-        analysisWindow.Show();
-    }
+
 }

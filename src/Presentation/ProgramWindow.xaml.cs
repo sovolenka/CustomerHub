@@ -61,4 +61,9 @@ public partial class ProgramWindow : Window
         ProductListWindow productListWindow = new();
         productListWindow.Show();
     }
+    private void AnalysisClick(object sender, RoutedEventArgs e)
+    {
+        AnalysisWindow analysisWindow = new();
+        analysisWindow.Show();
+    }
 }
