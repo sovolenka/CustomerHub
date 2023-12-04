@@ -30,4 +30,7 @@ public class Product
     [Required]
     [ForeignKey("UserId")]
     public User? User { get; set; }
+    
+    [ForeignKey("ClientId")]
+    public Client? Client { get; set; }
 }

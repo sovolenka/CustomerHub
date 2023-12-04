@@ -1,44 +1,117 @@
-﻿using System.Windows;
+﻿using Business.Services;
+using Data.Models;
+using Presentation.Events;
+using System;
+using System.Linq;
+using System.Windows;
 
+namespace Presentation;
 
-namespace Presentation
+/// <summary>
+/// Interaction logic for ProductListWindow.xaml
+/// </summary>
+public partial class ProductListWindow : Window
 {
+    private readonly ProductService _productService;
 
-    public partial class ProductListClick : Window
+    public ProductListWindow()
     {
-        public ProductListClick()
+        _productService = new ProductService();
+        InitializeComponent();
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
+
+    private void OpenAddProductWindow(object sender, RoutedEventArgs e)
+    {
+        AddProductWindow addProductWindow = new AddProductWindow();
+        addProductWindow.ProductAdded += OnProductsUpdate;
+        addProductWindow.Show();
+    }
+
+    // Event handler for the ClientAdded event
+    private void OnProductsUpdate(object? sender, EntityEventArgs e)
+    {
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
+
+    private void OnPredicateUpdate(object? sender, EntityPredicateEventArgs e)
+    {
+        Predicate<Product>? predicate = e.ProductPredicate;
+
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!)
+            .Where(client => predicate(client));
+    }
+
+    private void OpenEditProductWindow(object sender, RoutedEventArgs e)
+    {
+        if (ProductList.SelectedItem is null)
         {
-            InitializeComponent();
+            MessageBox.Show("Виберіть продукт для редагування");
+            return;
         }
 
-        private void addProductClick(object sender, RoutedEventArgs e)
-        {
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        UpdateProductWindow updateClientWindow = new UpdateProductWindow(selectedProduct);
+        updateClientWindow.ProductAdded += OnProductsUpdate;
+        updateClientWindow.Show();
+    }
 
+    private void DeleteProductClick(object sender, RoutedEventArgs e)
+    {
+        if (ProductList.SelectedItem is null)
+        {
+            MessageBox.Show("Виберіть продукт для видалення");
+            return;
         }
 
-        private void editProductClick(object sender, RoutedEventArgs e)
-        {
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        MessageBoxResult messageBoxResult = MessageBox.Show(
+            $"Ви впевнені, що хочете видалити {selectedProduct.Name}?",
+            "Delete Confirmation", MessageBoxButton.YesNo);
+        if (messageBoxResult == MessageBoxResult.No) return;
+        _productService.Remove(selectedProduct);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
 
+    private void SearchProductClick(object sender, RoutedEventArgs e)
+    {
+        SearchWindow searchWindow = new();
+        searchWindow.SearchApplied += OnPredicateUpdate;
+        searchWindow.Show();
+    }
+
+    private void AllProductsClick(object sender, RoutedEventArgs e)
+    {
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
+
+    private void AddProductClick(object sender, RoutedEventArgs e)
+    {
+        AddProductWindow addProductWindow = new AddProductWindow();
+        addProductWindow.ProductAdded += OnProductsUpdate;
+        addProductWindow.Show();
+    }
+
+    private void EditProductClick(object sender, RoutedEventArgs e)
+    {
+        if (ProductList.SelectedItem is null)
+        {
+            MessageBox.Show("Виберіть продукт для редагування");
+            return;
         }
 
-        private void deleteProductClick(object sender, RoutedEventArgs e)
-        {
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        UpdateProductWindow updateClientWindow = new UpdateProductWindow(selectedProduct);
+        updateClientWindow.ProductAdded += OnProductsUpdate;
+        updateClientWindow.Show();
+    }
 
-        }
+    private void AllProductClick(object sender, RoutedEventArgs e)
+    {
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
 
-        private void filterProductClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void countProductClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void analysisProductClick(object sender, RoutedEventArgs e)
-        {
-
-        }
+    private void AnalysisProductClick(object sender, RoutedEventArgs e)
+    {
     }
 }

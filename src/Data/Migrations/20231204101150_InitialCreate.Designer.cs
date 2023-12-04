@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(SQLiteContext))]
-    [Migration("20231113192924_InitialCreate")]
+    [Migration("20231204101150_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,7 +218,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Models.Product", b =>
                 {
-                    b.HasOne("Data.Models.Client", null)
+                    b.HasOne("Data.Models.Client", "Client")
                         .WithMany("Products")
                         .HasForeignKey("ClientId");
 
@@ -227,6 +227,8 @@ namespace Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");
 
                     b.Navigation("User");
                 });

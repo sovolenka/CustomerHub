@@ -7,10 +7,12 @@ namespace Presentation;
 public partial class ProgramWindow : Window
 {
     private readonly AuthorizationService _authorizationService;
+    private readonly CsvService _csvService;
 
     public ProgramWindow()
     {
         _authorizationService = new AuthorizationService();
+        _csvService = new CsvService();
         InitializeComponent();
     }
 
@@ -30,33 +32,23 @@ public partial class ProgramWindow : Window
 
     private void ImportClick(object sender, RoutedEventArgs e)
     {
-        /*
-        Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
-        if (openFileDialog.ShowDialog() == true)
-        {
-            string filePath = openFileDialog.FileName;
-            // Read the file and process it
-            string fileContent = File.ReadAllText(filePath);
-            // Add your logic to handle the file content
-        }
-        */
+        // open folder dialog to select directory
+        var dialog = new System.Windows.Forms.FolderBrowserDialog();
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ImportFromCsv(directory);
     }
-
 
     private void ExportClick(object sender, RoutedEventArgs e)
     {
-        /*
-        Microsoft.Win32.SaveFileDialog saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-        if (saveFileDialog.ShowDialog() == true)
-        {
-            string filePath = saveFileDialog.FileName;
-            // Add your logic to get the data you want to export
-            string dataToExport = "Your data to export"; // Replace this with your actual data
-            File.WriteAllText(filePath, dataToExport);
-        }
-        */
+        // open folder dialog to select directory
+        var dialog = new System.Windows.Forms.FolderBrowserDialog();
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ExportToCsv(directory);
     }
-
 
     private void OpenClientListWindow(object sender, RoutedEventArgs e)
     {
@@ -66,7 +58,7 @@ public partial class ProgramWindow : Window
 
     private void OpenProductListWindow(object sender, RoutedEventArgs e)
     {
-        ClientListWindow productListWindow = new();
+        ProductListWindow productListWindow = new();
         productListWindow.Show();
     }
 }

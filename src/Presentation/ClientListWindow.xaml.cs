@@ -12,12 +12,12 @@ public partial class ClientListWindow : Window
 {
     private readonly ClientService _clientService;
 
-    public ClientListWindow()
-    {
-        _clientService = new ClientService();
-        InitializeComponent();
-        ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
-    }
+        public ClientListWindow()
+        {
+            _clientService = new ClientService();
+            InitializeComponent();
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        }
 
     private void OpenAddClientWindow(object sender, RoutedEventArgs e)
     {
@@ -26,24 +26,19 @@ public partial class ClientListWindow : Window
         addClientWindow.Show();
     }
 
-    // Event handler for the ClientAdded event
-    private void OnClientsUpdate(object? sender, ClientEventArgs e)
-    {
-        ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
-    }
+        // Event handler for the ClientAdded event
+        private void OnClientsUpdate(object? sender, EntityEventArgs e)
+        {
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        }
 
-    private void OnPredicateUpdate(object? sender, ClientPredicateEventArgs e)
-    {
-        if (e.Predicate is null)
+        private void OnPredicateUpdate(object? sender, EntityPredicateEventArgs e)
         {
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
+            Predicate<Client> predicate = e.ClientPredicate;
+
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!)
+                .Where(client => predicate(client));
         }
-        else
-        {
-            ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!)
-                .Where(client => e.Predicate(client));
-        }
-    }
 
     private void OpenEditClientWindow(object sender, RoutedEventArgs e)
     {
@@ -67,14 +62,14 @@ public partial class ClientListWindow : Window
             return;
         }
 
-        Client selectedClient = (Client)ClientList.SelectedItem;
-        MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"Ви впевнені, що хочете видалити {selectedClient.FirstName} {selectedClient.SecondName}?",
-            "Delete Confirmation", MessageBoxButton.YesNo);
-        if (messageBoxResult == MessageBoxResult.No) return;
-        _clientService.Remove(selectedClient);
-        ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
-    }
+            Client selectedClient = (Client)ClientList.SelectedItem;
+            MessageBoxResult messageBoxResult = MessageBox.Show(
+                $"Ви впевнені, що хочете видалити {selectedClient.FirstName} {selectedClient.SecondName}?",
+                "Delete Confirmation", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.No) return;
+            _clientService.Remove(selectedClient);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        }
 
     private void SearchClientClick(object sender, RoutedEventArgs e)
     {
@@ -83,10 +78,10 @@ public partial class ClientListWindow : Window
         searchWindow.Show();
     }
 
-    private void AllClientsClick(object sender, RoutedEventArgs e)
-    {
-        ClientList.ItemsSource = _clientService.GetAll(AuthorizationService.AuthorizedUser!);
-    }
+        private void AllClientsClick(object sender, RoutedEventArgs e)
+        {
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        }
 
     private void AnalysisClientClick(object sender, RoutedEventArgs e)
     {
