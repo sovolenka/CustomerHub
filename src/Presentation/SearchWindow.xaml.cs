@@ -8,7 +8,7 @@ namespace Presentation;
 
 public partial class SearchWindow : Window
 {
-    public event EventHandler<ClientPredicateEventArgs> SearchApplied;
+    public event EventHandler<EntityPredicateEventArgs> SearchApplied;
 
     public SearchWindow()
     {
@@ -19,12 +19,15 @@ public partial class SearchWindow : Window
     private void SearchButtonClick(object sender, RoutedEventArgs e)
     {
         string[] words = SearchTextBox.Text.Split(' ');
-        OnSearchApplied(new ClientPredicateEventArgs(c =>
-            words.Any(w => ClientService.ClientContains(c, w))));
+
+        OnSearchApplied(new EntityPredicateEventArgs(
+            c => words.Any(w => ClientService.ClientContains(c, w)),
+            p => words.Any(w => ProductService.ProductContains(p, w))));
+
         Close();
     }
 
-    protected virtual void OnSearchApplied(ClientPredicateEventArgs e)
+    protected virtual void OnSearchApplied(EntityPredicateEventArgs e)
     {
         SearchApplied?.Invoke(this, e);
     }

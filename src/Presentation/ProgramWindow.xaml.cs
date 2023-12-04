@@ -1,6 +1,5 @@
 using Business.Services;
 using System.Windows;
-using Business.IO;
 
 
 namespace Presentation;
@@ -59,7 +58,7 @@ public partial class ProgramWindow : Window
 
     private void OpenProductListWindow(object sender, RoutedEventArgs e)
     {
-        ClientListWindow productListWindow = new();
+        ProductListWindow productListWindow = new();
         productListWindow.Show();
     }
 }

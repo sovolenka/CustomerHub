@@ -27,22 +27,17 @@ namespace Presentation
         }
 
         // Event handler for the ClientAdded event
-        private void OnClientsUpdate(object? sender, ClientEventArgs e)
+        private void OnClientsUpdate(object? sender, EntityEventArgs e)
         {
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
-        private void OnPredicateUpdate(object? sender, ClientPredicateEventArgs e)
+        private void OnPredicateUpdate(object? sender, EntityPredicateEventArgs e)
         {
-            if (e.Predicate is null)
-            {
-                ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-            }
-            else
-            {
-                ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!)
-                    .Where(client => e.Predicate(client));
-            }
+            Predicate<Client> predicate = e.ClientPredicate;
+
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!)
+                .Where(client => predicate(client));
         }
 
         private void OpenEditClientWindow(object sender, RoutedEventArgs e)
