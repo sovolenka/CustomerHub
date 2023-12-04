@@ -1,5 +1,6 @@
 using Data.Context;
 using Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
@@ -67,4 +68,30 @@ public class ClientService
     {
         return _context.Clients?.Count(client => client.User == user && client.Status == ClientStatus.Inactive) ?? 0;
     }
+    public Dictionary<DateOnly, int> GetClientsCountByDay(User user, DateOnly startDate, DateOnly endDate)
+    {
+        var clientsByDay = _context.Clients
+            .Where(client => client.User == user && client.DateAdded >= startDate && client.DateAdded <= endDate)
+            .AsEnumerable()
+            .GroupBy(client => client.DateAdded)
+            .ToDictionary(
+                group => group.Key,
+                group => group.Count()
+            );
+
+        var result = new Dictionary<DateOnly, int>();
+        for (DateOnly date = startDate; date <= endDate; date = date.AddDays(1))
+        {
+            if (!clientsByDay.ContainsKey(date))
+            {
+                result[date] = 0;
+            }
+            else
+            {
+                result[date] = clientsByDay[date];
+            }
+        }
+        return result;
+    }
+
 }
