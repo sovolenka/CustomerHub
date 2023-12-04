@@ -14,7 +14,7 @@ public partial class UpdateClientWindow : Window
     private readonly TimeService _timeService;
     
     // Event to notify that a new client is added
-    public event EventHandler<ClientEventArgs> ClientAdded;
+    public event EventHandler<EntityEventArgs> ClientAdded;
     
     public UpdateClientWindow(Client client)
     {
@@ -70,7 +70,7 @@ public partial class UpdateClientWindow : Window
         else
         {
             ErrorTextBlock.Text = "Клієнт успішно відредагований";
-            OnClientAdded(new ClientEventArgs(_client));
+            OnClientAdded(new EntityEventArgs(_client));
             Close();
         }
     }
@@ -81,7 +81,7 @@ public partial class UpdateClientWindow : Window
     }
     
     // Method to raise the event
-    protected virtual void OnClientAdded(ClientEventArgs e)
+    protected virtual void OnClientAdded(EntityEventArgs e)
     {
         ClientAdded?.Invoke(this, e);
     }

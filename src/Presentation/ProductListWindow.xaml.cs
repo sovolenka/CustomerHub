@@ -18,7 +18,7 @@ public partial class ProductListWindow : Window
     {
         _productService = new ProductService();
         InitializeComponent();
-        ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
     }
 
     private void OpenAddProductWindow(object sender, RoutedEventArgs e)
@@ -29,23 +29,17 @@ public partial class ProductListWindow : Window
     }
 
     // Event handler for the ClientAdded event
-    private void OnProductsUpdate(object? sender, ProductEventArgs e)
+    private void OnProductsUpdate(object? sender, EntityEventArgs e)
     {
-        ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
     }
 
-    private void OnPredicateUpdate(object? sender, EventArgs e)
+    private void OnPredicateUpdate(object? sender, EntityPredicateEventArgs e)
     {
-        Predicate<Product>? predicate = (e as ProductPredicateEventArgs)!.Predicate;
-        if (predicate is null)
-        {
-            ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!);
-        }
-        else
-        {
-            ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!)
-                .Where(client => predicate(client));
-        }
+        Predicate<Product>? predicate = e.ProductPredicate;
+
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!)
+            .Where(client => predicate(client));
     }
 
     private void OpenEditProductWindow(object sender, RoutedEventArgs e)
@@ -76,7 +70,7 @@ public partial class ProductListWindow : Window
             "Delete Confirmation", MessageBoxButton.YesNo);
         if (messageBoxResult == MessageBoxResult.No) return;
         _productService.Remove(selectedProduct);
-        ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
     }
 
     private void SearchProductClick(object sender, RoutedEventArgs e)
@@ -88,25 +82,36 @@ public partial class ProductListWindow : Window
 
     private void AllProductsClick(object sender, RoutedEventArgs e)
     {
-        ProductList.ItemsSource = _productService.GetAll(AuthorizationService.AuthorizedUser!);
-    }
-
-    private void AnalysisProductClick(object sender, RoutedEventArgs e)
-    {
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
     }
 
     private void AddProductClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        AddProductWindow addProductWindow = new AddProductWindow();
+        addProductWindow.ProductAdded += OnProductsUpdate;
+        addProductWindow.Show();
     }
 
     private void EditProductClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        if (ProductList.SelectedItem is null)
+        {
+            MessageBox.Show("Виберіть продукт для редагування");
+            return;
+        }
+
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        UpdateProductWindow updateClientWindow = new UpdateProductWindow(selectedProduct);
+        updateClientWindow.ProductAdded += OnProductsUpdate;
+        updateClientWindow.Show();
     }
 
     private void AllProductClick(object sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+    }
+
+    private void AnalysisProductClick(object sender, RoutedEventArgs e)
+    {
     }
 }

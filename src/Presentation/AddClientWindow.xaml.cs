@@ -12,7 +12,7 @@ public partial class AddClientWindow : Window
     private readonly TimeService _timeService;
     
     // Event to notify that a new client is added
-    public event EventHandler<ClientEventArgs> ClientAdded;
+    public event EventHandler<EntityEventArgs> ClientAdded;
 
     public AddClientWindow()
     {
@@ -58,7 +58,7 @@ public partial class AddClientWindow : Window
         else
         {
             // Notify subscribers (e.g., the ClientListWindow) that a new client is added
-            OnClientAdded(new ClientEventArgs(added));
+            OnClientAdded(new EntityEventArgs(added));
             ErrorTextBlock.Text = "Клієнт успішно доданий";
             ClearField();
         }
@@ -70,7 +70,7 @@ public partial class AddClientWindow : Window
     }
 
     // Method to raise the event
-    protected virtual void OnClientAdded(ClientEventArgs e)
+    protected virtual void OnClientAdded(EntityEventArgs e)
     {
         ClientAdded?.Invoke(this, e);
     }

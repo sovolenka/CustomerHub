@@ -41,7 +41,7 @@ public class ClientService
 
     public IEnumerable<Client> GetAllByUser(User user)
     {
-        return _context.Clients!.Where(client => client.User == user);
+        return _context.Clients!.Where(client => client.User == user).ToList();
     }
 
     public static bool ClientContains(Client client, string query)

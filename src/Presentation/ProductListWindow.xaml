@@ -20,13 +20,13 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Назва" Binding="{Binding Name}" Width="85"/>
                 <DataGridTextColumn Header="Ціна" Binding="{Binding Price}" Width="70"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="70"/>
-                <DataGridTextColumn Header="Категорія" Binding="{Binding Category}" Width="100"/>
-                <DataGridTextColumn Header="Опис" Binding="{Binding Description}" Width="122"/>
-                <DataGridTextColumn Header="Виробник" Binding="{Binding Manufacturer}" Width="100"/>
-                <DataGridTextColumn Header="Країна" Binding="{Binding Country}" Width="100"/>
-                <DataGridTextColumn Header="Дата виг." Binding="{Binding Date}" Width="70"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="80"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Characteristic.ProductType}" Width="70"/>
+                <DataGridTextColumn Header="Категорія" Binding="{Binding Characteristic.Category}" Width="100"/>
+                <DataGridTextColumn Header="Опис" Binding="{Binding Characteristic.Description}" Width="122"/>
+                <DataGridTextColumn Header="Виробник" Binding="{Binding Characteristic.Manufacturer}" Width="100"/>
+                <DataGridTextColumn Header="Країна" Binding="{Binding Characteristic.Country}" Width="100"/>
+                <DataGridTextColumn Header="Дата виг." Binding="{Binding Characteristic.ManufactureDate}" Width="70"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Characteristic.Status}" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
