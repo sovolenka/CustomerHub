@@ -1,6 +1,7 @@
 ﻿using Business.IO;
 using Data.Context;
 using Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
@@ -32,45 +33,44 @@ public class CsvService
         SetAuthorizedUserToClients(clients);
         SetAuthorizedUserToProducts(products);
         SetAuthorizedUserToReminders(reminders);
-
-        _context.Clients?.AddRange(clients);
-        _context.Products?.AddRange(products);
+        _context.Clients?.AttachRange(clients);
+        _context.Products?.AttachRange(products);
         var currentUser = AuthorizationService.AuthorizedUser;
         currentUser?.Reminders.AddRange(reminders);
         if (currentUser != null) _context.Users?.Update(currentUser);
         _context.SaveChanges();
     }
 
-
     private void SetAuthorizedUserToClients(List<Client> clients)
     {
-        foreach (var client in clients)
+        for (int i = 0; i < clients.Count; i++)
         {
-            client.User = AuthorizationService.AuthorizedUser;
+            clients[i].User = AuthorizationService.AuthorizedUser;
         }
     }
 
     private void SetAuthorizedUserToProducts(List<Product> products)
     {
-        foreach (var product in products)
+        for (int i = 0; i < products.Count; i++)
         {
-            product.User = AuthorizationService.AuthorizedUser;
+            products[i].User = AuthorizationService.AuthorizedUser;
         }
     }
 
     private void SetAuthorizedUserToReminders(List<Reminder> reminders)
     {
-        foreach (var reminder in reminders)
+        for (int i = 0; i < reminders.Count; i++)
         {
-            reminder.User = AuthorizationService.AuthorizedUser;
+            reminders[i].User = AuthorizationService.AuthorizedUser;
         }
     }
 
     private List<Client> GetClientsWithoutUser()
     {
-        var clients = _context.Clients?.ToList() ?? new List<Client>();
+        var clients = _context.Clients?.Where(c => c.User == AuthorizationService.AuthorizedUser).ToList() ?? new List<Client>();
         for (int i = 0; i < clients.Count; i++)
         {
+            clients[i].Id = 0;
             clients[i].User = null;
         }
 
@@ -79,9 +79,13 @@ public class CsvService
 
     private List<Product> GetProductsWithoutUser()
     {
-        var products = _context.Products?.ToList() ?? new List<Product>();
+        var products = _context.Products?
+            .Where(c => c.User == AuthorizationService.AuthorizedUser)
+            .Include(p => p.Characteristic)
+            .ToList() ?? new List<Product>();
         for (int i = 0; i < products.Count; i++)
         {
+            products[i].Id = 0;
             products[i].User = null;
         }
 
@@ -93,6 +97,7 @@ public class CsvService
         var reminders = AuthorizationService.AuthorizedUser?.Reminders?.ToList() ?? new List<Reminder>();
         for (int i = 0; i < reminders.Count; i++)
         {
+            reminders[i].Id = 0;
             reminders[i].User = null;
         }
 
