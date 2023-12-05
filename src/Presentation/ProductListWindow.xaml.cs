@@ -9,9 +9,6 @@ using System.Windows.Media;
 
 namespace Presentation;
 
-/// <summary>
-/// Interaction logic for ProductListWindow.xaml
-/// </summary>
 public partial class ProductListWindow : Window
 {
     private readonly ProductService _productService;
@@ -25,7 +22,7 @@ public partial class ProductListWindow : Window
 
     private void OpenAddProductWindow(object sender, RoutedEventArgs e)
     {
-        AddProductWindow addProductWindow = new AddProductWindow();
+        AddProductWindow addProductWindow = new ();
         addProductWindow.ProductAdded += OnProductsUpdate;
         addProductWindow.Show();
     }
@@ -53,7 +50,7 @@ public partial class ProductListWindow : Window
         }
 
         Product selectedProduct = (Product)ProductList.SelectedItem;
-        UpdateProductWindow updateClientWindow = new UpdateProductWindow(selectedProduct);
+        UpdateProductWindow updateClientWindow = new (selectedProduct);
         updateClientWindow.ProductAdded += OnProductsUpdate;
         updateClientWindow.Show();
     }
@@ -89,7 +86,7 @@ public partial class ProductListWindow : Window
 
     private void AddProductClick(object sender, RoutedEventArgs e)
     {
-        AddProductWindow addProductWindow = new AddProductWindow();
+        AddProductWindow addProductWindow = new ();
         addProductWindow.ProductAdded += OnProductsUpdate;
         addProductWindow.Show();
     }
@@ -108,7 +105,7 @@ public partial class ProductListWindow : Window
         }
 
         Product selectedProduct = (Product)ProductList.SelectedItem;
-        UpdateProductWindow updateClientWindow = new UpdateProductWindow(selectedProduct);
+        UpdateProductWindow updateClientWindow = new (selectedProduct);
         updateClientWindow.ProductAdded += OnProductsUpdate;
         updateClientWindow.Show();
     }

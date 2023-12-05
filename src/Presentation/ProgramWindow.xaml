@@ -26,5 +26,6 @@
             <MenuItem Header="Інформація">
             </MenuItem>
         </Menu>
+        <Frame Name="ListData"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
     </Grid>
 </Window>

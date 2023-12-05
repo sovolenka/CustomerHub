@@ -1,6 +1,6 @@
 using Business.Services;
 using System.Windows;
-
+using System.Windows.Documents;
 
 namespace Presentation;
 
@@ -13,7 +13,9 @@ public partial class ProgramWindow : Window
     {
         _authorizationService = new AuthorizationService();
         _csvService = new CsvService();
+        
         InitializeComponent();
+        ListData.Navigate(new ClientListWindow());
     }
 
     private void OpenEditAccountWindow(object sender, RoutedEventArgs e)

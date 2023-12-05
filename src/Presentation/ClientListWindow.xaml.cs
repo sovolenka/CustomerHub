@@ -17,7 +17,7 @@ public partial class ClientListWindow : Window
             _clientService = new ClientService();
             InitializeComponent();
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-        }
+    }
 
     private void OpenAddClientWindow(object sender, RoutedEventArgs e)
     {
