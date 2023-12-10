@@ -93,5 +93,24 @@ public class ClientService
         }
         return result;
     }
+    public bool IsEmailUnique(string email, User? user)
+    {
+        if (_context.Clients == null)
+        {
+            return true;
+        }
+        return !_context.Clients
+            .Any(client => client.Email == email && client.User == user);
+    }
 
+    public bool IsPhoneNumberUnique(string phoneNumber, User? user = null)
+    {
+        if (_context.Clients == null)
+        {
+            return true;
+        }
+
+        return !_context.Clients
+            .Any(client => client.PhoneNumber == phoneNumber && (user == null || client.User == user));
+    }
 }

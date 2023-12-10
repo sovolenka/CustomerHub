@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="CustomerHub" Height="450" Width="800" MinHeight="300" WindowStartupLocation="CenterScreen">
+        Title="CustomerHub" Height="450" Width="1000" MinHeight="300" WindowStartupLocation="CenterScreen">
     <Grid>
         <Menu>
             <MenuItem Header="Акаунт">
@@ -17,15 +17,59 @@
                 <MenuItem Header="Імпортувати" Click="ImportClick" />
                 <MenuItem Header="Експортувати" Click="ExportClick" />
             </MenuItem>
-            <MenuItem Header="Дані">
-                <MenuItem Header="Список клієнтів" Click="OpenClientListWindow" />
-                <MenuItem Header="Список товарів" Click="OpenProductListWindow" />
-            </MenuItem>
+            <MenuItem Header="Клієнти" Click="ShowClientList" x:Name="clientMenuItem" Visibility="Collapsed" Width="53"/>
+            <MenuItem Header="Товари" Click="ShowProductList" x:Name="productsMenuItem" Width="53" />
             <MenuItem Header="Аналіз" Click ="AnalysisClick">
             </MenuItem>
             <MenuItem Header="Інформація">
             </MenuItem>
         </Menu>
-        <Frame Name="ListData"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0"/>
+        <DockPanel Margin="10,40,10,10" x:Name="listClients" Background="#FFF0F0F0">
+            <Menu DockPanel.Dock="Top" BorderBrush="#FF3D3C3C">
+                <MenuItem Header="Додати" Click="OpenAddClientWindow" />
+                <MenuItem Header="Редагувати" Click="OpenEditClientWindow" Visibility="Collapsed" IsEnabled="{Binding C}" x:Name="editClient" />
+                <MenuItem Header="Видалити" Click="DeleteClientClick" Visibility="Collapsed"  IsEnabled="{Binding IsRowSelected}" x:Name="deleteClient" />
+                <MenuItem Header="Пошук" Click="SearchClientClick" x:Name="searchClient" Width="50" />
+                <MenuItem Header="Всі" Click="AllClientsClick" x:Name="allClients" Visibility="Hidden" Width="50" />
+            </Menu>
+
+            <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto" IsReadOnly="True" CanUserAddRows="False" SelectionChanged="ClientListSelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ім'я" Binding="{Binding FirstName}" Width="*" />
+                    <DataGridTextColumn Header="Прізвище" Binding="{Binding SecondName}" Width="*" />
+                    <DataGridTextColumn Header="По-батькові" Binding="{Binding ThirdName}" Width="*" />
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding PhoneNumber}" Width="*" />
+                    <DataGridTextColumn Header="Електронна пошта" Binding="{Binding Email}" Width="*" />
+                    <DataGridTextColumn Header="Адреса" Binding="{Binding Address}" Width="*" />
+                    <DataGridTextColumn Header="Підприємство" Binding="{Binding Factory}" Width="*" />
+                    <DataGridTextColumn Header="Дата додавання" Binding="{Binding DateAdded}" Width="*" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <DockPanel Margin="10,40,10,10" Visibility="Collapsed" x:Name="listProducts">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Додати" Click="AddProductClick" />
+                <MenuItem Header="Редагувати" Click="EditProductClick" Visibility="Collapsed" x:Name="editProduct" />
+                <MenuItem Header="Видалити" Click="DeleteProductClick" Visibility="Collapsed" x:Name="deleteProduct" />
+                <MenuItem Header="Пошук" Click="SearchProductsClick" x:Name="searchProduct" Width="50" />
+                <MenuItem Header="Всі" Click="AllProductsClick" x:Name="allProduct" Visibility="Hidden" Width="50" />
+            </Menu>
+
+            <DataGrid x:Name="ProductList" AutoGenerateColumns="False" Height="Auto" Width="Auto" IsReadOnly="True" CanUserAddRows="False" SelectionChanged="ProductListSelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Назва" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn Header="Ціна" Binding="{Binding Price}" Width="*"/>
+                    <DataGridTextColumn Header="Тип" Binding="{Binding Characteristic.ProductType}" Width="*"/>
+                    <DataGridTextColumn Header="Категорія" Binding="{Binding Characteristic.Category}" Width="*"/>
+                    <DataGridTextColumn Header="Опис" Binding="{Binding Characteristic.Description}" Width="*"/>
+                    <DataGridTextColumn Header="Виробник" Binding="{Binding Characteristic.Manufacturer}"/>
+                    <DataGridTextColumn Header="Країна" Binding="{Binding Characteristic.Country}" Width="*"/>
+                    <DataGridTextColumn Header="Дата виг." Binding="{Binding Characteristic.ManufactureDate}" Width="*"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding Characteristic.Status}" Width="*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
+        </DockPanel>
     </Grid>
 </Window>
