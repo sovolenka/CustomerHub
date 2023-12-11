@@ -43,7 +43,7 @@
         </StackPanel>
 
         <Button Content="Створити Акаунт" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top"
-                Click="CreateAccount" Margin="0,270,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582"
+                Click="CreateAccount" Margin="0,280,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582"
                 Background="#FF8F8383">
             <Button.RenderTransform>
                 <TransformGroup>
@@ -59,7 +59,7 @@
                    VerticalAlignment="Top" FontSize="12" Margin="0,250,0,0" Width="229" />
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,335,0,0">
-            <TextBlock Text="Вже маєте акаунт?" FontSize="13" RenderTransformOrigin="0.444,2.542" Width="114" />
+            <TextBlock Text="Вже маєте акаунт?" FontSize="15" RenderTransformOrigin="0.444,2.542" Width="130" />
             <TextBlock Text="Увійти" FontSize="15" FontWeight="Bold" MouseDown="LogAccountClick"
                        RenderTransformOrigin="0.585,1.782" Width="51" />
         </StackPanel>

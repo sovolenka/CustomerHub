@@ -72,8 +72,6 @@ namespace Presentation
             }
         }
 
-        
-
         public NewClientsAnalysis()
         {
             InitializeComponent();

@@ -6,9 +6,7 @@ using Business.Services;
 
 namespace Presentation;
 
-/// <summary>
-/// Interaction logic for UpdateProductWindow.xaml
-/// </summary>
+
 public partial class UpdateProductWindow : Window
 {
     private Product _product;

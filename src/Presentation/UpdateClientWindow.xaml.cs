@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using Business.Services;
+using Business.Validators.Exceptions;
+using Business.Validators;
 using Data.Models;
 using Presentation.Events;
 
@@ -50,8 +53,67 @@ public partial class UpdateClientWindow : Window
 
     private void EditButtonClick(object sender, RoutedEventArgs e)
     {
-        // TODO: Add validation
-        
+        EmailErrorTextBlock.Text = "";
+        PhoneNumberErrorTextBlock.Text = "";
+        FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
+        FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
+        EmailTextBox.Foreground = new SolidColorBrush(Colors.Black);
+        PhoneNumberTextBox.Foreground = new SolidColorBrush(Colors.Black);
+        if (FirstNameTextBox.Text == "")
+        {
+            FirstNameText.Foreground = new SolidColorBrush(Colors.Red);
+            return;
+        }
+
+        if (EmailTextBox.Text == "")
+        {
+            EmailText.Foreground = new SolidColorBrush(Colors.Red);
+            return;
+        }
+        if (PhoneNumberTextBox.Text == "")
+        {
+            PhoneNumberText.Foreground = new SolidColorBrush(Colors.Red);
+            return;
+        }
+
+        if (EmailTextBox.Text != "")
+        {
+            try
+            {
+                EmailValidator.Validate(EmailTextBox.Text);
+
+            }
+            catch (InvalidEmailException)
+            {
+                EmailErrorTextBlock.Text = "Неправильний формат електронної пошти";
+                return;
+            }
+        }
+        if (PhoneNumberTextBox.Text != "")
+        {
+            try
+            {
+                PhoneNumberValidator.Validate(PhoneNumberTextBox.Text);
+            }
+            catch (InvalidPhoneNumberException)
+            {
+                PhoneNumberErrorTextBlock.Text = "Неправильний формат номеру телефону";
+                return;
+            }
+        }
+
+        if (EmailTextBox.Text != _client.Email && !_clientService.IsEmailUnique(EmailTextBox.Text, AuthorizationService.AuthorizedUser))
+        {
+            EmailErrorTextBlock.Text = "Пошта вже використовується";
+            return;
+        }
+
+        if (PhoneNumberTextBox.Text != _client.PhoneNumber && !_clientService.IsPhoneNumberUnique(PhoneNumberTextBox.Text, AuthorizationService.AuthorizedUser))
+        {
+            PhoneNumberErrorTextBlock.Text = "Номер вже використовується";
+            return;
+        }
+
         _client.FirstName = FirstNameTextBox.Text;
         _client.SecondName = SecondNameTextBox.Text;
         _client.ThirdName = ThirdNameTextBox.Text;
