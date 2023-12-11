@@ -239,4 +239,50 @@ public class ClientServiceTest : TestsBase
         Assert.Equal(1, clientsCountByDay[endDate]);
         DeleteClients();
     }
+    
+    [Fact]
+    public void IsEmailUnique_UniqueEmail_ReturnsTrue()
+    {
+        var email = "unique@email.com";
+        _clientService.Add(_client, _user);
+        
+        var result = _clientService.IsEmailUnique(email, _user);
+        
+        Assert.True(result);
+        DeleteClients();
+    }
+    
+    [Fact]
+    public void IsEmailUnique_NonUniqueEmail_ReturnsFalse()
+    {
+        _clientService.Add(_client, _user);
+        
+        var result = _clientService.IsEmailUnique(_client.Email!, _user);
+        
+        Assert.False(result);
+        DeleteClients();
+    }
+    
+    [Fact]
+    public void IsPhoneNumberUnique_UniquePhoneNumber_ReturnsTrue()
+    {
+        var phoneNumber = "380873908158";
+        _clientService.Add(_client, _user);
+        
+        var result = _clientService.IsPhoneNumberUnique(phoneNumber, _user);
+        
+        Assert.True(result);
+        DeleteClients();
+    }
+    
+    [Fact]
+    public void IsPhoneNumberUnique_NonUniquePhoneNumber_ReturnsFalse()
+    {
+        _clientService.Add(_client, _user);
+        
+        var result = _clientService.IsPhoneNumberUnique(_client.PhoneNumber!, _user);
+        
+        Assert.False(result);
+        DeleteClients();
+    }
 }
