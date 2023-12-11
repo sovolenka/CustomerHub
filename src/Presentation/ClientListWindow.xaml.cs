@@ -6,11 +6,11 @@ using Data.Models;
 using Presentation.Events;
 
 
-namespace Presentation
+namespace Presentation;
+
+public partial class ClientListWindow : Window
 {
-    public partial class ClientListWindow : Window
-    {
-        private readonly ClientService _clientService;
+    private readonly ClientService _clientService;
 
         public ClientListWindow()
         {
@@ -19,12 +19,12 @@ namespace Presentation
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
-        private void OpenAddClientWindow(object sender, RoutedEventArgs e)
-        {
-            AddClientWindow addClientWindow = new AddClientWindow();
-            addClientWindow.ClientAdded += OnClientsUpdate;
-            addClientWindow.Show();
-        }
+    private void OpenAddClientWindow(object sender, RoutedEventArgs e)
+    {
+        AddClientWindow addClientWindow = new();
+        addClientWindow.ClientAdded += OnClientsUpdate;
+        addClientWindow.Show();
+    }
 
         // Event handler for the ClientAdded event
         private void OnClientsUpdate(object? sender, EntityEventArgs e)
@@ -40,27 +40,27 @@ namespace Presentation
                 .Where(client => predicate(client));
         }
 
-        private void OpenEditClientWindow(object sender, RoutedEventArgs e)
+    private void OpenEditClientWindow(object sender, RoutedEventArgs e)
+    {
+        if (ClientList.SelectedItem is null)
         {
-            if (ClientList.SelectedItem is null)
-            {
-                MessageBox.Show("Виберіть клієнта для редагування");
-                return;
-            }
-
-            Client selectedClient = (Client)ClientList.SelectedItem;
-            UpdateClientWindow updateClientWindow = new UpdateClientWindow(selectedClient);
-            updateClientWindow.ClientAdded += OnClientsUpdate;
-            updateClientWindow.Show();
+            MessageBox.Show("Виберіть клієнта для редагування");
+            return;
         }
 
-        private void DeleteClientClick(object sender, RoutedEventArgs e)
+        Client selectedClient = (Client)ClientList.SelectedItem;
+        UpdateClientWindow updateClientWindow = new (selectedClient);
+        updateClientWindow.ClientAdded += OnClientsUpdate;
+        updateClientWindow.Show();
+    }
+
+    private void DeleteClientClick(object sender, RoutedEventArgs e)
+    {
+        if (ClientList.SelectedItem is null)
         {
-            if (ClientList.SelectedItem is null)
-            {
-                MessageBox.Show("Виберіть клієнта для видалення");
-                return;
-            }
+            MessageBox.Show("Виберіть клієнта для видалення");
+            return;
+        }
 
             Client selectedClient = (Client)ClientList.SelectedItem;
             MessageBoxResult messageBoxResult = MessageBox.Show(
@@ -71,20 +71,17 @@ namespace Presentation
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
-        private void SearchClientClick(object sender, RoutedEventArgs e)
-        {
-            SearchWindow searchWindow = new();
-            searchWindow.SearchApplied += OnPredicateUpdate;
-            searchWindow.Show();
-        }
+    private void SearchClientClick(object sender, RoutedEventArgs e)
+    {
+        SearchWindow searchWindow = new();
+        searchWindow.SearchApplied += OnPredicateUpdate;
+        searchWindow.Show();
+    }
 
         private void AllClientsClick(object sender, RoutedEventArgs e)
         {
             ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         }
 
-        private void AnalysisClientClick(object sender, RoutedEventArgs e)
-        {
-        }
-    }
+
 }
