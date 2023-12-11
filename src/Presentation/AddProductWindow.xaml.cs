@@ -4,6 +4,7 @@ using System.Windows.Media;
 using Business.Services;
 using Data.Models;
 using Presentation.Events;
+using Serilog;
 
 namespace Presentation;
 
@@ -21,6 +22,7 @@ public partial class AddProductWindow : Window
         InitializeStatusComboBox();
         InitializeDatePicker();
         ClearFields();
+        Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened.");
     }
 
     private void InitializeStatusComboBox()
@@ -115,11 +117,13 @@ public partial class AddProductWindow : Window
         if (added is null)
         {
             ErrorTextBlock.Text = "Помилка при додаванні продукту";
+            Log.Error($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding product: {product.Name}");
         }
         else
         {
             OnProductAdded(new EntityEventArgs(added));
             ErrorTextBlock.Text = "Продукт успішно додано";
+            Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product added: {product.Name}");
             ClearFields();
         }
     }
@@ -127,6 +131,7 @@ public partial class AddProductWindow : Window
     private void CancelButtonClick(object sender, RoutedEventArgs e)
     {
         Close();
+        Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window closed.");
     }
 
     protected virtual void OnProductAdded(EntityEventArgs e)

@@ -6,6 +6,7 @@ using Data.Models;
 using Presentation.Events;
 using Business.Validators;
 using Business.Validators.Exceptions;
+using Serilog;
 
 namespace Presentation;
 
@@ -13,6 +14,7 @@ public partial class AddClientWindow : Window
 {
     private readonly ClientService _clientService;
     private readonly TimeService _timeService;
+    private readonly UserService _userService;
     
     // Event to notify that a new client is added
     public event EventHandler<EntityEventArgs> ClientAdded;
@@ -24,6 +26,7 @@ public partial class AddClientWindow : Window
         ClientAdded += (sender, args) => { };
         InitializeComponent();
         ClearField();
+        Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
     private void ClearField()
@@ -72,6 +75,7 @@ public partial class AddClientWindow : Window
             catch (InvalidEmailException)
             {
                 EmailErrorTextBlock.Text = "Неправильний формат електронної пошти";
+                Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Invalid email format");
                 return;
             }
         }
@@ -84,6 +88,7 @@ public partial class AddClientWindow : Window
             catch (InvalidPhoneNumberException)
             {
                 PhoneNumberErrorTextBlock.Text = "Неправильний формат номеру телефону";
+                Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Invalid phone number format: {PhoneNumberTextBox.Text}");
                 return;
             }
         }
@@ -91,12 +96,14 @@ public partial class AddClientWindow : Window
         if (!_clientService.IsEmailUnique(EmailTextBox.Text, AuthorizationService.AuthorizedUser))
         {
             EmailErrorTextBlock.Text = "Пошта вже використовується";
+            Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Email {EmailTextBox.Text} already exists");
             return;
         }
 
         if (!_clientService.IsPhoneNumberUnique(PhoneNumberTextBox.Text, AuthorizationService.AuthorizedUser))
         {
             PhoneNumberErrorTextBlock.Text = "Номер вже використовується";
+            Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Phone number {PhoneNumberTextBox.Text} already exists");
             return;
         }
 
@@ -116,12 +123,14 @@ public partial class AddClientWindow : Window
         if (added is null)
         {
             ErrorTextBlock.Text = "Помилка при додаванні клієнта";
+            Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding client {client.Email}");
         }
         else
         {
             // Notify subscribers (e.g., the ClientListWindow) that a new client is added
             OnClientAdded(new EntityEventArgs(added));
             ErrorTextBlock.Text = "Клієнт успішно доданий";
+            Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {client.Email} added successfully");
             ClearField();
         }
     }
@@ -129,6 +138,7 @@ public partial class AddClientWindow : Window
     private void CancelButtonClick(object sender, RoutedEventArgs e)
     {
         Close();
+        Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window closed");
     }
 
     // Method to raise the event

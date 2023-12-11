@@ -6,6 +6,7 @@ using Business.Validators.Exceptions;
 using Business.Validators;
 using Data.Models;
 using Presentation.Events;
+using Serilog;
 
 
 namespace Presentation;
@@ -28,6 +29,7 @@ public partial class UpdateClientWindow : Window
         InitializeStatusComboBox();
         _client = client;
         InitializeClient(client);
+        Log.Information($"{nameof(UpdateClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
     private void InitializeStatusComboBox()
@@ -86,6 +88,7 @@ public partial class UpdateClientWindow : Window
             catch (InvalidEmailException)
             {
                 EmailErrorTextBlock.Text = "Неправильний формат електронної пошти";
+                Log.Information($"{nameof(RegisterWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Incorrect email format {EmailTextBox.Text}");
                 return;
             }
         }
@@ -97,7 +100,9 @@ public partial class UpdateClientWindow : Window
             }
             catch (InvalidPhoneNumberException)
             {
-                PhoneNumberErrorTextBlock.Text = "Неправильний формат номера телефону";
+
+                PhoneNumberErrorTextBlock.Text = "Неправильний формат номеру телефону";
+                Log.Information($"{nameof(RegisterWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Incorrect phone number format {PhoneNumberTextBox.Text}");
                 return;
             }
         }
@@ -105,12 +110,14 @@ public partial class UpdateClientWindow : Window
         if (EmailTextBox.Text != _client.Email && !_clientService.IsEmailUnique(EmailTextBox.Text, AuthorizationService.AuthorizedUser))
         {
             EmailErrorTextBlock.Text = "Пошта вже використовується";
+            Log.Information($"{nameof(RegisterWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Email {EmailTextBox.Text} is already in use");
             return;
         }
 
         if (PhoneNumberTextBox.Text != _client.PhoneNumber && !_clientService.IsPhoneNumberUnique(PhoneNumberTextBox.Text, AuthorizationService.AuthorizedUser))
         {
             PhoneNumberErrorTextBlock.Text = "Номер вже використовується";
+            Log.Information($"{nameof(RegisterWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Phone number {PhoneNumberTextBox.Text} is already in use");
             return;
         }
 
@@ -128,10 +135,12 @@ public partial class UpdateClientWindow : Window
         if (updated is null)
         {
             ErrorTextBlock.Text = "Помилка при редагуванні клієнта";
+            Log.Information($"{nameof(UpdateClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while updating client {_client.Email}");
         }
         else
         {
             ErrorTextBlock.Text = "Клієнт успішно відредагований";
+            Log.Information($"{nameof(UpdateClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {_client.Email} updated");
             OnClientAdded(new EntityEventArgs(_client));
             Close();
         }

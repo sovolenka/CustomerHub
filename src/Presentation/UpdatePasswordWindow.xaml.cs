@@ -3,6 +3,7 @@ using System.Windows;
 using Business.Validators;
 using Business.Validators.Exceptions;
 using Data.Models;
+using Serilog;
 
 namespace Presentation;
 
@@ -18,6 +19,7 @@ public partial class UpdatePasswordWindow : Window
         _userService = new UserService();
         _passwordService = new PasswordService();
         InitializeComponent();
+        Log.Information($"{nameof(UpdatePasswordWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
     private void ChangePasswordClick(object sender, RoutedEventArgs e)
@@ -32,18 +34,21 @@ public partial class UpdatePasswordWindow : Window
         if (!_authorizationService.CheckAuthorizedUserPassword(_passwordService.HashString(OldPasswordBox.Password)))
         {
             ErrorTextBlock.Text = "Неправильний поточний пароль";
+            Log.Information($"{nameof(UpdatePasswordWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Incorrect current password");
             return;
         }
 
         if (OldPasswordBox.Password == NewPasswordBox.Password)
         {
             ErrorTextBlock.Text = "Ваш пароль повинен відрізнятись від поточного";
+            Log.Information($"{nameof(UpdatePasswordWindow)}. {AuthorizationService.AuthorizedUser?.Email}. New password is the same as the current one");
             return;
         }
         
         if (NewPasswordBox.Password != ConfirmPasswordBox.Password)
         {
             ErrorTextBlock.Text = "Паролі не співпадають";
+            Log.Information($"{nameof(UpdatePasswordWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Passwords do not match");
             return;
         }
 
@@ -54,6 +59,7 @@ public partial class UpdatePasswordWindow : Window
         catch (InvalidPasswordException)
         {
             ErrorTextBlock.Text = "Придумайте надійніший пароль";
+            Log.Information($"{nameof(UpdatePasswordWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Password is not strong enough");
             return;
         }
         

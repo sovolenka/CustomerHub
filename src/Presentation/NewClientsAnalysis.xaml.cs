@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Serilog;
 
 namespace Presentation
 {
@@ -98,7 +99,7 @@ namespace Presentation
                 Title = "Кількість клієнтів",
                 Values = new ChartValues<int>(clientsByDay?.Select(entry => entry.Value) ?? Enumerable.Empty<int>())
             });
-
+            Log.Information($"{nameof(NewClientsAnalysis)}. {AuthorizationService.AuthorizedUser?.Email}. Chart updated");
         }
 
 

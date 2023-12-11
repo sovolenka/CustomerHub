@@ -8,6 +8,16 @@ public class ProductService
 {
     private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
 
+    public ProductService(SQLiteContext context)
+    {
+        _context = context;
+    }
+    
+    public ProductService()
+    {
+        _context = SQLiteContextSingleton.Instance;
+    }
+    
     public Product? Add(Product product, User? user = null)
     {
         if (user is not null) product.User = user;

@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using Business.Services;
+using Serilog;
 
 namespace Presentation;
 
@@ -14,6 +15,7 @@ public partial class SearchWindow : Window
     {
         SearchApplied += (sender, args) => { };
         InitializeComponent();
+        Log.Information($"{nameof(SearchWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
     private void SearchButtonClick(object sender, RoutedEventArgs e)
@@ -25,6 +27,7 @@ public partial class SearchWindow : Window
             p => words.Any(w => ProductService.ProductContains(p, w))));
 
         Close();
+        Log.Information($"{nameof(SearchWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Search applied: {SearchTextBox.Text}");
     }
 
     protected virtual void OnSearchApplied(EntityPredicateEventArgs e)
