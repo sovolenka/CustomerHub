@@ -49,16 +49,16 @@ public partial class UpdateClientWindow : Window
         AddressTextBox.Text = client.Address;
         FactoryTextBox.Text = client.Factory;
         StatusComboBox.SelectedItem = client.Status;
-                EmailErrorTextBlock.Text = "";
+    }
+
+    private void EditButtonClick(object sender, RoutedEventArgs e)
+    {
+        EmailErrorTextBlock.Text = "";
         PhoneNumberErrorTextBlock.Text = "";
         FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
         FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
         EmailTextBox.Foreground = new SolidColorBrush(Colors.Black);
         PhoneNumberTextBox.Foreground = new SolidColorBrush(Colors.Black);
-    }
-
-    private void EditButtonClick(object sender, RoutedEventArgs e)
-    {
         if (FirstNameTextBox.Text == "")
         {
             FirstNameText.Foreground = new SolidColorBrush(Colors.Red);
