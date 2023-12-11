@@ -97,7 +97,7 @@ public partial class UpdateClientWindow : Window
             }
             catch (InvalidPhoneNumberException)
             {
-                PhoneNumberErrorTextBlock.Text = "Неправильний формат номеру телефону";
+                PhoneNumberErrorTextBlock.Text = "Неправильний формат номера телефону";
                 return;
             }
         }

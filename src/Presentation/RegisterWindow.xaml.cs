@@ -47,7 +47,7 @@ public partial class RegisterWindow : Window
             return;
         }
 
-        User? user = new User(EmailTextBox.Text, _passwordService.HashString(PasswordBox.Password));
+        User? user = new (EmailTextBox.Text, _passwordService.HashString(PasswordBox.Password));
         user = _userService.Add(user);
 
         if (user is null) return;

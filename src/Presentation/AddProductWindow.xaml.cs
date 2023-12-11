@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 using Business.Services;
 using Data.Models;
 using Presentation.Events;
@@ -11,7 +12,6 @@ public partial class AddProductWindow : Window
     private readonly ProductService _productService;
     private readonly TimeService _timeService;
     public event EventHandler<EntityEventArgs> ProductAdded;
-
     public AddProductWindow()
     {
         _productService = new ProductService();
@@ -34,7 +34,6 @@ public partial class AddProductWindow : Window
 
     private void InitializeDatePicker()
     {
-        // set maximum date to today
         DatePicker.DisplayDateEnd = _timeService.GetCurrentDateTime();
     }
 
@@ -51,7 +50,53 @@ public partial class AddProductWindow : Window
 
     private void AddButtonClick(object sender, RoutedEventArgs e)
     {
-        Characteristic characteristic = new Characteristic(
+        NameText.Foreground = new SolidColorBrush(Colors.Black);
+        PriceTextBox.Foreground = new SolidColorBrush(Colors.Black);
+        PriceTextBoxErorBlock.Text = "";
+        StatusComboBoxErrorText.Text = "";
+        ErrorTextBlock.Text = "";
+
+        if (NameTextBox.Text == "")
+        {
+            NameText.Foreground = new SolidColorBrush(Colors.Red);
+            return;
+        }
+        if (!_productService.IsProductNameUnique(NameTextBox.Text, AuthorizationService.AuthorizedUser!))
+        {
+            ErrorTextBlock.Text = "Такий продукт вже існує";
+            return;
+        }
+
+        if (PriceTextBox.Text == "")
+        {
+            PriceText.Foreground = new SolidColorBrush(Colors.Red);
+            return;
+        }
+
+        try
+        {
+            int result = Convert.ToInt32(PriceTextBox.Text);
+        }
+        catch (FormatException)
+        {
+            PriceTextBoxErorBlock.Text = "Невірний формат";
+            return;
+        }
+        catch (OverflowException)
+        {
+            PriceTextBoxErorBlock.Text = "Невірний формат";
+            return;
+        }
+        if (StatusComboBox.SelectedItem == null)
+        {
+            StatusComboBoxErrorText.Text = "Виберіть статус продукту";
+            return;
+        }
+
+
+
+
+        Characteristic characteristic = new (
             TypeTextBox.Text,
             CategoryTextBox.Text,
             DescriptionTextBox.Text,
@@ -60,7 +105,7 @@ public partial class AddProductWindow : Window
             DateOnly.FromDateTime(DateTime.Now),
             (ProductStatus)StatusComboBox.SelectedItem!
         );
-        Product product = new Product(
+        Product product = new (
             NameTextBox.Text,
             Convert.ToInt32(PriceTextBox.Text),
             characteristic

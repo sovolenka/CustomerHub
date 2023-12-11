@@ -13,8 +13,6 @@ public partial class AddClientWindow : Window
 {
     private readonly ClientService _clientService;
     private readonly TimeService _timeService;
-    private readonly AuthorizationService _authorizationService;
-    private readonly UserService _userService;
     
     // Event to notify that a new client is added
     public event EventHandler<EntityEventArgs> ClientAdded;
@@ -23,7 +21,6 @@ public partial class AddClientWindow : Window
     {
         _clientService = new ClientService();
         _timeService = new TimeService();
-        _authorizationService = new AuthorizationService();
         ClientAdded += (sender, args) => { };
         InitializeComponent();
         ClearField();
@@ -103,7 +100,7 @@ public partial class AddClientWindow : Window
             return;
         }
 
-        Client client = new Client(
+        Client client = new (
             FirstNameTextBox.Text,
             SecondNameTextBox.Text,
             ThirdNameTextBox.Text,
