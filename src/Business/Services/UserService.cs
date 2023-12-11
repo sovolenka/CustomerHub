@@ -5,8 +5,18 @@ namespace Business.Services;
 
 public class UserService
 {
-    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context;
 
+    public UserService(SQLiteContext context)
+    {
+        _context = context;
+    }
+    
+    public UserService()
+    {
+        _context = SQLiteContextSingleton.Instance;
+    }
+    
     public User? Get(int id)
     {
         return _context.Users!.Find(id);

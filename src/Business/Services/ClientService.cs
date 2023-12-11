@@ -1,12 +1,21 @@
 using Data.Context;
 using Data.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
 public class ClientService
 {
-    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context;
+
+    public ClientService()
+    {
+        _context = SQLiteContextSingleton.Instance;
+    }
+
+    public ClientService(SQLiteContext context)
+    {
+        _context = context;
+    }
 
     public Client? Add(Client client, User? user = null)
     {
@@ -22,7 +31,7 @@ public class ClientService
 
     public Client? Remove(Client client)
     {
-        Client? removed = _context.Remove(client).Entity;
+        Client removed = _context.Remove(client).Entity;
         _context.SaveChanges();
         return removed;
     }
@@ -68,9 +77,10 @@ public class ClientService
     {
         return _context.Clients?.Count(client => client.User == user && client.Status == ClientStatus.Inactive) ?? 0;
     }
+
     public Dictionary<DateOnly, int> GetClientsCountByDay(User user, DateOnly startDate, DateOnly endDate)
     {
-        var clientsByDay = _context.Clients
+        var clientsByDay = _context.Clients?
             .Where(client => client.User == user && client.DateAdded >= startDate && client.DateAdded <= endDate)
             .AsEnumerable()
             .GroupBy(client => client.DateAdded)
@@ -82,7 +92,7 @@ public class ClientService
         var result = new Dictionary<DateOnly, int>();
         for (DateOnly date = startDate; date <= endDate; date = date.AddDays(1))
         {
-            if (!clientsByDay.ContainsKey(date))
+            if (!clientsByDay!.ContainsKey(date))
             {
                 result[date] = 0;
             }
@@ -91,8 +101,10 @@ public class ClientService
                 result[date] = clientsByDay[date];
             }
         }
+
         return result;
     }
+    
     public bool IsEmailUnique(string email, User? user)
     {
         if (_context.Clients == null)
