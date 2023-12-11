@@ -107,7 +107,7 @@ public partial class AddClientWindow : Window
             return;
         }
 
-        Client client = new Client(
+        Client client = new (
             FirstNameTextBox.Text,
             SecondNameTextBox.Text,
             ThirdNameTextBox.Text,

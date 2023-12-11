@@ -60,4 +60,15 @@ public class ProductService
                product.Characteristic.ManufactureDate.ToString().ToLower().Contains(query) ||
                product.Characteristic.Status!.ToString().ToLower().Contains(query);
     }
+
+    public bool IsProductNameUnique(string? productName, User user)
+    {
+        if (productName == null)
+        {
+            return false;
+        }
+        IEnumerable<Product> existingProducts = GetAllByUser(user);
+        return !existingProducts.Any(product =>
+            product.Name != null && product.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+    }
 }

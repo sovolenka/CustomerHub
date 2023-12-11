@@ -100,6 +100,7 @@ public partial class UpdateClientWindow : Window
             }
             catch (InvalidPhoneNumberException)
             {
+
                 PhoneNumberErrorTextBlock.Text = "Неправильний формат номеру телефону";
                 Log.Information($"{nameof(RegisterWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Incorrect phone number format {PhoneNumberTextBox.Text}");
                 return;
