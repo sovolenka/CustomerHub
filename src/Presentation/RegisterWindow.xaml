@@ -45,6 +45,20 @@
         <Button Content="Створити Акаунт" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top"
                 Click="CreateAccount" Margin="0,280,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582"
                 Background="#FF8F8383">
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Storyboard.TargetName="EmailTextBox" Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)"
+                                            To="#FF6681" Duration="0:0:0.2" AutoReverse="True"/>
+                            <ColorAnimation Storyboard.TargetName="PasswordBox" Storyboard.TargetProperty="(PasswordBox.Background).(SolidColorBrush.Color)"
+                                            To="#FF6681" Duration="0:0:0.2" AutoReverse="True"/>
+                            <ColorAnimation Storyboard.TargetName="ConfirmPasswordBox" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                            To="#FF6681" Duration="0:0:0.2" AutoReverse="True"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1" />
