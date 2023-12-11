@@ -21,7 +21,7 @@
         <TextBlock x:Name="ErrorTextBlock" Text="" Foreground="Red" HorizontalAlignment="Center"
                    VerticalAlignment="Top" FontSize="12" Margin="0,170,0,0" Width="229" />
         <Button Content="Увійти" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Click="LogAccount"
-                Margin="0,197,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582" />
+                Margin="0,200,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582" />
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,70,0,0">
             <TextBlock Text="Пошта:" FontSize="14" Height="20" />
@@ -33,14 +33,12 @@
 
         </StackPanel>
 
-        <Button Content="Увійти" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Click="LogAccount"
-                Margin="0,197,0,0" Width="230" Height="30" RenderTransformOrigin="0.507,0.582" />
 
-        <TextBlock Text="Забули пароль?" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="12"
-                   Margin="0,240,0,0" TextDecorations="Underline" MouseDown="ForgotPasswordTextBlockMouseDown" />
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,260,0,0">
-            <TextBlock Text="Не маєте акаунту?" FontSize="13" RenderTransformOrigin="0.444,2.542" Width="110" />
-            <TextBlock Text="Зареєструватися" FontSize="15" FontWeight="Bold" TextDecorations="Underline"
+        <TextBlock Text="Забули пароль?" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"
+                   Margin="0,250,0,0" TextDecorations="Underline" MouseDown="ForgotPasswordTextBlockMouseDown" />
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,280,0,0">
+            <TextBlock Text="Не маєте акаунту?" FontSize="15"  Width="130" />
+            <TextBlock Text="Зареєструватися" FontSize="15" FontWeight="Bold"
                        MouseDown="RegisterTextBlockMouseDown" RenderTransformOrigin="0.585,1.782" />
         </StackPanel>
     </Grid>

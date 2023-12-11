@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Height="130" Width="615" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title ="Пошук" Height="130" Width="615" ResizeMode="NoResize" Background="#FFF4EEEE" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox x:Name="SearchTextBox" FontSize="14" HorizontalAlignment="Left" Margin="28,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="465" Height="36"/>
         <Button x:Name="SearchButton" Content="Пошук" Margin="498,27,28,0" VerticalAlignment="Top" RenderTransformOrigin="0.089,0.162" Height="36" Click="SearchButtonClick"/>
