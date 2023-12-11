@@ -18,7 +18,12 @@ public sealed class SQLiteContext: DbContext
         DbPath = Path.Join(path, dbPath);
         Database.EnsureCreated();
     }
-
+    
+    public void DropDatabase()
+    {
+        Database.EnsureDeleted();
+    }
+    
     // The following configures EF to create a Sqlite database file in the
     // special "local" folder for your platform.
     protected override void OnConfiguring(DbContextOptionsBuilder options)

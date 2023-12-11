@@ -1,15 +1,26 @@
 using Data.Context;
 using Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
 public class AuthorizationService
 {
-    private readonly SQLiteContext _context = SQLiteContextSingleton.Instance;
+    private readonly SQLiteContext _context;
     
     public static bool LoggedIn => AuthorizedUser is not null;
     public static User? AuthorizedUser { get; private set; }
 
+    public AuthorizationService()
+    {
+        _context = SQLiteContextSingleton.Instance;
+    }
+    
+    public AuthorizationService(SQLiteContext context)
+    {
+        _context = context;
+    }
+    
     public void UpdateAuthorizedUser()
     {
         if (!LoggedIn) return;
