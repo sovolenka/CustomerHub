@@ -27,18 +27,10 @@
                 <EventTrigger RoutedEvent="Button.Loaded">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation Storyboard.TargetName="LoginTextBox" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                             From="0" To="-10" Duration="0:0:0.2" AutoReverse="True"/>
-                            <DoubleAnimation Storyboard.TargetName="PasswordBox" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                                             From="0" To="-10" Duration="0:0:0.2" AutoReverse="True"/>
-                            <DoubleAnimation Storyboard.TargetName="PasswordBox" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)"
-                                             From="0" To="-10" Duration="0:0:0.2" AutoReverse="True"/>
                             <ColorAnimation Storyboard.TargetName="LoginTextBox" Storyboard.TargetProperty="(TextBox.Background).(SolidColorBrush.Color)"
-                                            To="Red" Duration="0:0:0.2" AutoReverse="True"/>
+                                            To="#FF6681" Duration="0:0:0.2" AutoReverse="True"/>
                             <ColorAnimation Storyboard.TargetName="PasswordBox" Storyboard.TargetProperty="(PasswordBox.Background).(SolidColorBrush.Color)"
-                                            To="Red" Duration="0:0:0.2" AutoReverse="True"/>
-                            <ColorAnimation Storyboard.TargetName="LoginTextBox" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                            To="Red" Duration="0:0:0.2" AutoReverse="True"/>
+                                            To="#FF6681" Duration="0:0:0.2" AutoReverse="True"/>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -49,15 +41,6 @@
             <TextBlock Text="Пошта:" FontSize="14" Height="20" />
             <TextBox x:Name="LoginTextBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"
                      Background="#FFE2DCDC" FontSize="18">
-                <TextBox.Triggers>
-                    <EventTrigger RoutedEvent="TextBox.Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </TextBox.Triggers>
             </TextBox>
             <TextBlock Text="Пароль:" FontSize="14" Height="20" />
             <PasswordBox x:Name="PasswordBox" Width="231" Height="30" Foreground="#333333" BorderBrush="#FFA3A0A0"
