@@ -2,11 +2,11 @@
 using Business.Services;
 using LiveCharts.Wpf;
 using LiveCharts;
+using Serilog;
 
 
 namespace Presentation
 {
-
     public partial class ActiveInactiveClients : Page
     {
         public SeriesCollection PieSeriesCollection { get; set; }
@@ -23,18 +23,22 @@ namespace Presentation
                 new PieSeries
                 {
                     Title = "Активний",
-                    Values = new ChartValues<int> { _clientService.GetActiveClientsCount(AuthorizationService.AuthorizedUser!) },
+                    Values = new ChartValues<int>
+                        { _clientService.GetActiveClientsCount(AuthorizationService.AuthorizedUser!) },
                     DataLabels = true
                 },
                 new PieSeries
                 {
                     Title = "Неактивний",
-                    Values = new ChartValues<int> { _clientService.GetInactiveClientsCount(AuthorizationService.AuthorizedUser!) },
+                    Values = new ChartValues<int>
+                        { _clientService.GetInactiveClientsCount(AuthorizationService.AuthorizedUser!) },
                     DataLabels = true
                 }
             };
 
             DataContext = this;
+            Log.Information(
+                $"{nameof(ActiveInactiveClients)}. {AuthorizationService.AuthorizedUser?.Email}. Page opened");
         }
     }
 }

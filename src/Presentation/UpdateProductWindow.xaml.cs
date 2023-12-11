@@ -3,6 +3,7 @@ using Presentation.Events;
 using System;
 using System.Windows;
 using Business.Services;
+using Serilog;
 
 namespace Presentation;
 
@@ -21,6 +22,7 @@ public partial class UpdateProductWindow : Window
         InitializeComponent();
         InitializeStatusComboBox();
         InitializeFields();
+        Log.Information($"{nameof(UpdateProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
     private void InitializeStatusComboBox()
@@ -72,10 +74,12 @@ public partial class UpdateProductWindow : Window
         if (updated is null)
         {
             ErrorTextBlock.Text = "Помилка при редагуванні продукту";
+            Log.Information($"{nameof(UpdateProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while updating product");
         }
         else
         {
             ErrorTextBlock.Text = "Продукт успішно відредагований";
+            Log.Information($"{nameof(UpdateProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {updated.Name} updated");
             OnProductAdded(new EntityEventArgs(_product));
             Close();
         }
