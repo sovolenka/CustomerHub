@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="ProductListWindow" Height="450" Width="800">
+        Title="Продукти" Height="450" Width="800" MinHeight="300" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Додати" Click="AddProductClick" />
@@ -13,7 +13,6 @@
             <MenuItem Header="Видалити" Click="DeleteProductClick" />
             <MenuItem Header="Пошук" Click="SearchProductClick" />
             <MenuItem Header="Всі" Click="AllProductClick" />
-            <MenuItem Header="Аналіз" Click="AnalysisProductClick" />
         </Menu>
 
         <DataGrid x:Name="ProductList" AutoGenerateColumns="False" Height="Auto" Width="Auto" CanUserAddRows="False">

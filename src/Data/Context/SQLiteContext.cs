@@ -15,7 +15,7 @@ public sealed class SQLiteContext: DbContext
     {
         var folder = Environment.SpecialFolder.LocalApplicationData;
         var path = Environment.GetFolderPath(folder);
-        DbPath = Path.Join(path, "customerhub.db");
+        DbPath = Path.Join(path, "customerhub.db"); // .../AppData/Local/customerhub.db
         Database.EnsureCreated();
     }
 

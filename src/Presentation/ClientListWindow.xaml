@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="ClientListWindow" Height="450" Width="1000">
+        Title="Клієнти" Height="450" Width="1000" MinHeight="300">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Додати" Click="OpenAddClientWindow" />
@@ -13,9 +13,8 @@
             <MenuItem Header="Видалити" Click="DeleteClientClick" IsEnabled="{Binding IsRowSelected}" />
             <MenuItem Header="Пошук" Click="SearchClientClick" />
             <MenuItem Header="Всі" Click="AllClientsClick" />
-            <MenuItem Header="Аналіз" Click="AnalysisClientClick" />
         </Menu>
-
+            
         <DataGrid Name="ClientList" AutoGenerateColumns="False" Height="Auto" Width="Auto" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Ім'я" Binding="{Binding FirstName}" Width="110" />
