@@ -128,8 +128,8 @@ public partial class ProgramWindow : Window
     {
         Client selectedClient = (Client)ClientList.SelectedItem;
         MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"?? ????????, ?? ?????? ???????? ??????? {selectedClient.FirstName} {selectedClient.SecondName}?",
-            "Delete Confirmation", MessageBoxButton.YesNo);
+            $"Ви справді, хочете видалити клієнта {selectedClient.FirstName} {selectedClient.SecondName}?",
+            "Підтвердження видалення", MessageBoxButton.YesNo);
         if (messageBoxResult == MessageBoxResult.No) return;
         _clientService.Remove(selectedClient);
         Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {selectedClient.FirstName} {selectedClient.SecondName} deleted");
@@ -183,8 +183,8 @@ public partial class ProgramWindow : Window
     {
         Product selectedProduct = (Product)ProductList.SelectedItem;
         MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"?? ????????, ?? ?????? ???????? ??????? {selectedProduct.Name}?",
-            "Delete Confirmation", MessageBoxButton.YesNo);
+            $"Ви справді, хочете видалити товар {selectedProduct.Name}?",
+            "Підтвердження видалення", MessageBoxButton.YesNo);
         if (messageBoxResult == MessageBoxResult.No) return;
         _productService.Remove(selectedProduct);
         Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {selectedProduct.Name} deleted");

@@ -6,7 +6,6 @@ namespace Test.Services;
 
 public class UserServiceTest : TestsBase
 {
-    private readonly UserService _userService;
 
     public UserServiceTest() : base("UserServiceTest.db")
     {
@@ -14,6 +13,7 @@ public class UserServiceTest : TestsBase
         DeleteUsers();
     }
 
+    private readonly UserService _userService;
     private void DeleteUsers()
     {
         ContextProxy.Users!.RemoveRange(ContextProxy.Users!);

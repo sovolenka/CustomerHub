@@ -1,4 +1,3 @@
-using System;
 using Business.Services;
 using System.Windows;
 using Serilog;
