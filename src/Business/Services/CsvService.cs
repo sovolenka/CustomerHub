@@ -12,7 +12,7 @@ public class CsvService
     private const string ClientsFileName = "clients.csv";
     private const string ProductsFileName = "products.csv";
     private const string RemindersFileName = "reminders.csv";
-    
+
     public void ExportToCsv(string directory)
     {
         var clients = GetClientsWithoutUser();

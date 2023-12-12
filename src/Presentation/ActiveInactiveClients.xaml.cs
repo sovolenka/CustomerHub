@@ -4,41 +4,42 @@ using LiveCharts.Wpf;
 using LiveCharts;
 using Serilog;
 
-
 namespace Presentation
 {
     public partial class ActiveInactiveClients : Page
     {
-        public SeriesCollection PieSeriesCollection { get; set; }
-
         private readonly ClientService _clientService;
 
+        public SeriesCollection PieSeriesCollection { get; }
+        
         public ActiveInactiveClients()
         {
-            _clientService = new ClientService();
-            InitializeComponent();
-
-            PieSeriesCollection = new SeriesCollection
+            this._clientService = new ClientService();
+            this.PieSeriesCollection = new SeriesCollection
             {
                 new PieSeries
                 {
                     Title = "Активний",
                     Values = new ChartValues<int>
-                        { _clientService.GetActiveClientsCount(AuthorizationService.AuthorizedUser!) },
-                    DataLabels = true
+                        { this._clientService.GetActiveClientsCount(AuthorizationService.AuthorizedUser!) },
+                    DataLabels = true,
                 },
-                new PieSeries
+                new PieSeries 
                 {
                     Title = "Неактивний",
                     Values = new ChartValues<int>
                         { _clientService.GetInactiveClientsCount(AuthorizationService.AuthorizedUser!) },
-                    DataLabels = true
+                    DataLabels = true,
                 }
             };
 
-            DataContext = this;
-            Log.Information(
-                $"{nameof(ActiveInactiveClients)}. {AuthorizationService.AuthorizedUser?.Email}. Page opened");
+            this.DataContext = this;
+
+            if (AuthorizationService.AuthorizedUser != null)
+            {
+                Log.Information(
+                    $"{nameof(ActiveInactiveClients)}. {AuthorizationService.AuthorizedUser.Email}. Page opened");
+            }
         }
     }
 }
