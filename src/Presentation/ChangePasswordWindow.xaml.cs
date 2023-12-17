@@ -17,7 +17,7 @@ public partial class ChangePassword : Window
         Log.Information($"{nameof(ChangePassword)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened");
     }
 
-    private void EmailTextBox(object sender, RoutedEventArgs e)
+    private void emailTextBox(object sender, RoutedEventArgs e)
     {
         if (sender is TextBox textBox)
         {
@@ -25,11 +25,11 @@ public partial class ChangePassword : Window
         }
     }
 
-    private void MassageToEmailButton(object sender, RoutedEventArgs e)
+    private void massageToEmailButton(object sender, RoutedEventArgs e)
     {
     }
 
-    private void ImageMouseDown(object sender, MouseButtonEventArgs e)
+    private void imageMouseDown(object sender, MouseButtonEventArgs e)
     {
         AuthorizationWindow authorizationWindow = new AuthorizationWindow();
         this.Hide();
