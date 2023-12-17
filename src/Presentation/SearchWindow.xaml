@@ -7,14 +7,8 @@
         mc:Ignorable="d"
         Title ="Пошук" Height="130" Width="615" ResizeMode="NoResize" Background="#FFF4EEEE" WindowStartupLocation="CenterScreen">
     <Grid>
-<<<<<<< HEAD
-        <TextBlock Text="Введіть текст для пошуку по всіх характеристиках:" Margin="28,10,0,96" Foreground="#FF625858" FontWeight="Bold" />
-        <TextBox x:Name="SearchTextBox" FontSize="14" HorizontalAlignment="Left" Margin="33,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="465" Height="36"/>
-        <Button x:Name="SearchButton" Content="Пошук" Margin="503,0,23,0" VerticalAlignment="Center" RenderTransformOrigin="0.089,0.162" Height="36" Click="SearchButtonClick" FontWeight="Bold"/>
-=======
-        <TextBlock Text="Введіть символи за якими хочете знаходити чи фільтрувати" Margin="28,10,0,87" Foreground="#FF625858" FontWeight="Bold" />
-        <TextBox x:Name="SearchTextBox" FontSize="14" HorizontalAlignment="Left" Margin="28,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="465" Height="36"/>
-        <Button x:Name="SearchButton" Content="Пошук" Margin="498,27,28,0" VerticalAlignment="Top" RenderTransformOrigin="0.089,0.162" Height="36" Click="SearchButtonClick" FontWeight="Bold"/>
->>>>>>> parent of e29970b (AddStyleCop and fixed errors)
+        <TextBlock Text="Введіть текст для пошуку по всіх характеристиках:" Margin="28,10,0,80" Foreground="#FF625858" FontWeight="Bold" />
+        <TextBox x:Name="SearchTextBox" FontSize="14" HorizontalAlignment="Left" Margin="30,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="465" Height="36"/>
+            <Button x:Name="SearchButton" Content="Пошук" Margin="500,0,23,0" VerticalAlignment="Center" RenderTransformOrigin="0.089,0.162" Height="36" Click="SearchButtonClick" FontWeight="Bold"/>
     </Grid>
 </Window>
