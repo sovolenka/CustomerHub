@@ -46,19 +46,19 @@
                 .Where(p => p.User == user).ToList();
         }
 
-        public static bool ProductContains(Product product, string query)
-        {
-            query = query.ToLower();
-            return product.Name!.ToLower().Contains(query) ||
-                   product.Price.ToString().Contains(query) ||
-                   product.Characteristic!.ProductType!.ToLower().Contains(query) ||
-                   product.Characteristic!.Category!.ToLower().Contains(query) ||
-                   product.Characteristic!.Description!.ToLower().Contains(query) ||
-                   product.Characteristic!.Manufacturer!.ToLower().Contains(query) ||
-                   product.Characteristic!.Country!.ToLower().Contains(query) ||
-                   product.Characteristic.ManufactureDate.ToString().ToLower().Contains(query) ||
-                   product.Characteristic.Status!.ToString().ToLower().Contains(query);
-        }
+    public static bool ProductContains(Product product, string query)
+    {
+        query = query.ToLower();
+        return product.Name!.ToLower().Contains(query) ||
+               product.Price.ToString().Contains(query) ||
+               product.Characteristic!.ProductType!.ToLower().Contains(query) ||
+               product.Characteristic!.Category!.ToLower().Contains(query) ||
+               product.Characteristic!.Description!.ToLower().Contains(query) ||
+               product.Characteristic!.Manufacturer!.ToLower().Contains(query) ||
+               product.Characteristic!.Country!.ToLower().Contains(query) ||
+               product.Characteristic.ManufactureDate.ToString().ToLower().Contains(query) ||
+               product.Characteristic.ProductStatus!.ToString().ToLower().Contains(query);
+    }
 
         public bool IsProductNameUnique(string? productName, User user)
         {

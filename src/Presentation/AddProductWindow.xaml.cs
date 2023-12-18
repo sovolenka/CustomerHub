@@ -11,22 +11,23 @@ namespace Presentation
     using Serilog;
 
 
-    public partial class AddProductWindow : Window
+public partial class AddProductWindow : Window
+{
+    private readonly ProductService _productService;
+    private readonly TimeService _timeService;
+    public event EventHandler<EntityEventArgs> ProductAdded;
+
+    public AddProductWindow()
     {
-        private readonly ProductService _productService;
-        private readonly TimeService _timeService;
-        public event EventHandler<EntityEventArgs> ProductAdded;
-        public AddProductWindow()
-        {
-            _productService = new ProductService();
-            _timeService = new TimeService();
-            ProductAdded += (sender, args) => { };
-            InitializeComponent();
-            InitializeStatusComboBox();
-            InitializeDatePicker();
-            ClearFields();
-            Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened.");
-        }
+        _productService = new ProductService();
+        _timeService = new TimeService();
+        ProductAdded += (sender, args) => { };
+        InitializeComponent();
+        InitializeStatusComboBox();
+        InitializeDatePicker();
+        ClearFields();
+        Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Window opened.");
+    }
 
         private void InitializeStatusComboBox()
         {

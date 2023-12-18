@@ -62,26 +62,26 @@ namespace Test.Services
         {
             ClearDatabase();
 
-            var product = new Product
+        var product = new Product
+        {
+            Name = "TestProduct",
+            Price = 10,
+            Characteristic = new Characteristic
             {
-                Name = "TestProduct",
-                Price = 10,
-                Characteristic = new Characteristic
-                {
-                    ProductType = "Type",
-                    Category = "Category",
-                    Description = "Description",
-                    Manufacturer = "Manufacturer",
-                    Country = "Country",
-                    ManufactureDate = new DateOnly(2023, 1, 1),
-                    Status = ProductStatus.New
-                },
-                User = _user
-            };
-            ContextProxy.Products!.Add(product);
-            ContextProxy.SaveChanges();
-
-            var removedProduct = _productService.Remove(product);
+                ProductType = "Type",
+                Category = "Category",
+                Description = "Description",
+                Manufacturer = "Manufacturer",
+                Country = "Country",
+                ManufactureDate = new DateOnly(2023, 1, 1),
+                ProductStatus = ProductStatus.New
+            },
+            User = _user
+        };
+        ContextProxy.Products!.Add(product);
+        ContextProxy.SaveChanges();
+        
+        var removedProduct = _productService.Remove(product);
 
             Assert.Equal(product, removedProduct);
             Assert.DoesNotContain(product, ContextProxy.Products!);

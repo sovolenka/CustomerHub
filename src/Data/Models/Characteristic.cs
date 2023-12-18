@@ -18,28 +18,25 @@ namespace Data.Models
         /// </summary>
         public Characteristic() { }
 
-        /// <summary>
-        /// Initializes a new instance of the <see /> class with specified parameters.
-        /// </summary>
-        public Characteristic
-        (
-            string productType,
-            string category,
-            string description,
-            string manufacturer,
-            string country,
-            DateOnly manufactureDate,
-            ProductStatus status
-        )
-        {
-            ProductType = productType;
-            Category = category;
-            Description = description;
-            Manufacturer = manufacturer;
-            Country = country;
-            ManufactureDate = manufactureDate;
-            Status = status;
-        }
+    public Characteristic
+    (
+        string productType,
+        string category,
+        string description,
+        string manufacturer,
+        string country,
+        DateOnly manufactureDate,
+        ProductStatus productStatus
+    )
+    {
+        ProductType = productType;
+        Category = category;
+        Description = description;
+        Manufacturer = manufacturer;
+        Country = country;
+        ManufactureDate = manufactureDate;
+        ProductStatus = productStatus;
+    }
 
         /// <summary>
         /// Product characteristic.
@@ -82,10 +79,7 @@ namespace Data.Models
         /// </summary>
         public DateOnly ManufactureDate { get; set; }
 
-        /// <summary>
-        /// Status of the product.
-        /// </summary>
-        public ProductStatus Status { get; set; }
+    public ProductStatus ProductStatus { get; set; }
 
         /// <summary>
         /// Gets or sets the product associated with this characteristic.

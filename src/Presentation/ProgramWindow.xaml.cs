@@ -35,45 +35,59 @@ namespace Presentation
             updateAccountWindow.Show();
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
         }
+    private void OpenEditAccountWindow(object sender, RoutedEventArgs e)
+    {
+        UpdatePasswordWindow updateAccountWindow = new();
+        updateAccountWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
+    }
 
-        private void LogOutClick(object sender, RoutedEventArgs e)
-        {
-            AuthorizationWindow authorizationWindow = new();
-            authorizationWindow.Show();
-            _authorizationService.LogOut();
-            Close();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. User {AuthorizationService.AuthorizedUser?.Email} logged out");
-        }
+    private void LogOutClick(object sender, RoutedEventArgs e)
+    {
+        AuthorizationWindow authorizationWindow = new();
+        authorizationWindow.Show();
+        _authorizationService.LogOut();
+        Close();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. User {AuthorizationService.AuthorizedUser?.Email} logged out");
+    }
 
-        private void ImportClick(object sender, RoutedEventArgs e)
-        {
-            // open folder dialog to select directory
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            var result = dialog.ShowDialog();
-            if (result != System.Windows.Forms.DialogResult.OK) return;
-            string directory = dialog.SelectedPath;
-            _csvService.ImportFromCsv(directory);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
-        }
+    private void ImportClick(object sender, RoutedEventArgs e)
+    {
+        var dialog = new System.Windows.Forms.FolderBrowserDialog();
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ImportFromCsv(directory);
+        ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        MessageBox.Show("–Ü–º–ø–æ—Ä—Ç –∑–∞–≤–µ—Ä—à–µ–Ω–æ");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
+    }
 
-        private void ExportClick(object sender, RoutedEventArgs e)
-        {
-            // open folder dialog to select directory
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            var result = dialog.ShowDialog();
-            if (result != System.Windows.Forms.DialogResult.OK) return;
-            string directory = dialog.SelectedPath;
-            _csvService.ExportToCsv(directory);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Export to {directory} completed");
-        }
+    private void ExportClick(object sender, RoutedEventArgs e)
+    {
+        // open folder dialog to select directory
+        var dialog = new System.Windows.Forms.FolderBrowserDialog();
+        var result = dialog.ShowDialog();
+        if (result != System.Windows.Forms.DialogResult.OK) return;
+        string directory = dialog.SelectedPath;
+        _csvService.ExportToCsv(directory);
+        MessageBox.Show("–ï–∫—Å–ø–æ—Ä—Ç –∑–∞–≤–µ—Ä—à–µ–Ω–æ");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Export to {directory} completed");
+    }
 
 
-        private void AnalysisClick(object sender, RoutedEventArgs e)
-        {
-            AnalysisWindow analysisWindow = new();
-            analysisWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AnalysisWindow opened");
-        }
+    private void AnalysisClick(object sender, RoutedEventArgs e)
+    {
+        AnalysisWindow analysisWindow = new();
+        analysisWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AnalysisWindow opened");
+    }
 
         private void ShowClientList(object sender, RoutedEventArgs e)
         {
@@ -93,13 +107,14 @@ namespace Presentation
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list opened");
         }
 
-        private void OpenAddClientWindow(object sender, RoutedEventArgs e)
-        {
-            AddClientWindow addClientWindow = new();
-            addClientWindow.ClientAdded += OnClientsUpdate;
-            addClientWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddClientWindow opened");
-        }
+    private void OpenAddClientWindow(object sender, RoutedEventArgs e)
+    {
+        AddClientWindow addClientWindow = new();
+        addClientWindow.ClientAdded += OnClientsUpdate;
+        addClientWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddClientWindow opened");
+    }
 
         private void OnClientsUpdate(object? sender, EntityEventArgs e)
         {
@@ -116,27 +131,30 @@ namespace Presentation
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client list updated");
         }
 
-        private void OpenEditClientWindow(object sender, RoutedEventArgs e)
-        {
-            Client selectedClient = (Client)ClientList.SelectedItem;
-            UpdateClientWindow updateClientWindow = new(selectedClient);
-            updateClientWindow.ClientAdded += OnClientsUpdate;
-            updateClientWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateClientWindow opened");
-        }
+    private void OpenEditClientWindow(object sender, RoutedEventArgs e)
+    {
+        Client selectedClient = (Client)ClientList.SelectedItem;
+        UpdateClientWindow updateClientWindow = new(selectedClient);
+        updateClientWindow.ClientAdded += OnClientsUpdate;
+        updateClientWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateClientWindow opened");
+    }
 
-        private void DeleteClientClick(object sender, RoutedEventArgs e)
-        {
-            Client selectedClient = (Client)ClientList.SelectedItem;
-            MessageBoxResult messageBoxResult = MessageBox.Show(
-                $"¬Ë ÒÔ‡‚‰≥, ıÓ˜ÂÚÂ ‚Ë‰‡ÎËÚË ÍÎ≥∫ÌÚ‡ {selectedClient.FirstName} {selectedClient.SecondName}?",
-                "œ≥‰Ú‚Â‰ÊÂÌÌˇ ‚Ë‰‡ÎÂÌÌˇ", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.No) return;
-            _clientService.Remove(selectedClient);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {selectedClient.FirstName} {selectedClient.SecondName} deleted");
-            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client list updated");
-        }
+    private void DeleteClientClick(object sender, RoutedEventArgs e)
+    {
+        Client selectedClient = (Client)ClientList.SelectedItem;
+        MessageBoxResult messageBoxResult = MessageBox.Show(
+            $"–í–∏ –≤–ø–µ–≤–Ω–µ–Ω—ñ, —â–æ —Ö–æ—á–µ—Ç–µ –≤–∏–¥–∞–ª–∏—Ç–∏ –∫–ª—ñ—î–Ω—Ç–∞ {selectedClient.FirstName} {selectedClient.SecondName}?",
+            "–ü—ñ–¥—Ç–≤–µ—Ä–¥–∂–µ–Ω–Ω—è –≤–∏–¥–∞–ª–µ–Ω–Ω—è",
+            MessageBoxButton.YesNo);
+        if (messageBoxResult == MessageBoxResult.No) return;
+        _clientService.Remove(selectedClient);
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {selectedClient.FirstName} {selectedClient.SecondName} deleted");
+        ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client list updated");
+    }
 
         private void SearchClientClick(object sender, RoutedEventArgs e)
         {
@@ -156,13 +174,14 @@ namespace Presentation
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client list updated");
         }
 
-        private void OpenAddProductWindow(object sender, RoutedEventArgs e)
-        {
-            AddProductWindow addProductWindow = new();
-            addProductWindow.ProductAdded += OnProductsUpdate;
-            addProductWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
-        }
+    private void OpenAddProductWindow(object sender, RoutedEventArgs e)
+    {
+        AddProductWindow addProductWindow = new();
+        addProductWindow.ProductAdded += OnProductsUpdate;
+        addProductWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
+    }
 
         // Event handler for the ClientAdded event
         private void OnProductsUpdate(object? sender, EntityEventArgs e)
@@ -180,18 +199,20 @@ namespace Presentation
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list updated");
         }
 
-        private void DeleteProductClick(object sender, RoutedEventArgs e)
-        {
-            Product selectedProduct = (Product)ProductList.SelectedItem;
-            MessageBoxResult messageBoxResult = MessageBox.Show(
-                $"¬Ë ÒÔ‡‚‰≥, ıÓ˜ÂÚÂ ‚Ë‰‡ÎËÚË ÚÓ‚‡ {selectedProduct.Name}?",
-                "œ≥‰Ú‚Â‰ÊÂÌÌˇ ‚Ë‰‡ÎÂÌÌˇ", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.No) return;
-            _productService.Remove(selectedProduct);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {selectedProduct.Name} deleted");
-            ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list updated");
-        }
+    private void DeleteProductClick(object sender, RoutedEventArgs e)
+    {
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        MessageBoxResult messageBoxResult = MessageBox.Show(
+            $"–í–∏ –≤–ø–µ–≤–Ω–µ–Ω—ñ, —â–æ —Ö–æ—á–µ—Ç–µ –≤–∏–¥–∞–ª–∏—Ç–∏ –ø—Ä–æ–¥—É–∫—Ç {selectedProduct.Name}?",
+            "–ü—ñ–¥—Ç–≤–µ—Ä–¥–∂–µ–Ω–Ω—è –≤–∏–¥–∞–ª–µ–Ω–Ω—è",
+            MessageBoxButton.YesNo);
+        if (messageBoxResult == MessageBoxResult.No) return;
+        _productService.Remove(selectedProduct);
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {selectedProduct.Name} deleted");
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list updated");
+    }
 
         private void SearchProductsClick(object sender, RoutedEventArgs e)
         {
@@ -211,22 +232,24 @@ namespace Presentation
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list updated");
         }
 
-        private void AddProductClick(object sender, RoutedEventArgs e)
-        {
-            AddProductWindow addProductWindow = new();
-            addProductWindow.ProductAdded += OnProductsUpdate;
-            addProductWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
-        }
+    private void AddProductClick(object sender, RoutedEventArgs e)
+    {
+        AddProductWindow addProductWindow = new();
+        addProductWindow.ProductAdded += OnProductsUpdate;
+        addProductWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
+    }
 
-        private void EditProductClick(object sender, RoutedEventArgs e)
-        {
-            Product selectedProduct = (Product)ProductList.SelectedItem;
-            UpdateProductWindow updateClientWindow = new(selectedProduct);
-            updateClientWindow.ProductAdded += OnProductsUpdate;
-            updateClientWindow.Show();
-            Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateProductWindow opened");
-        }
+    private void EditProductClick(object sender, RoutedEventArgs e)
+    {
+        Product selectedProduct = (Product)ProductList.SelectedItem;
+        UpdateProductWindow updateClientWindow = new(selectedProduct);
+        updateClientWindow.ProductAdded += OnProductsUpdate;
+        updateClientWindow.Show();
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateProductWindow opened");
+    }
 
         private void ClientListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

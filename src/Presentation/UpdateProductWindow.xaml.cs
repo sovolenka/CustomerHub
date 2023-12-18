@@ -37,18 +37,18 @@ namespace Presentation
             }
         }
 
-        private void InitializeFields()
-        {
-            NameTextBox.Text = _product.Name;
-            PriceTextBox.Text = _product.Price.ToString();
-            TypeTextBox.Text = _product.Characteristic?.ProductType;
-            CategoryTextBox.Text = _product.Characteristic?.Category;
-            DescriptionTextBox.Text = _product.Characteristic?.Description;
-            ManufacturerTextBox.Text = _product.Characteristic?.Manufacturer;
-            CountryTextBox.Text = _product.Characteristic?.Country;
-            DatePicker.SelectedDate = TimeService.DateOnlyToDateTime(_product.Characteristic?.ManufactureDate);
-            StatusComboBox.SelectedItem = _product.Characteristic?.Status;
-        }
+    private void InitializeFields()
+    {
+        NameTextBox.Text = _product.Name;
+        PriceTextBox.Text = _product.Price.ToString();
+        TypeTextBox.Text = _product.Characteristic?.ProductType;
+        CategoryTextBox.Text = _product.Characteristic?.Category;
+        DescriptionTextBox.Text = _product.Characteristic?.Description;
+        ManufacturerTextBox.Text = _product.Characteristic?.Manufacturer;
+        CountryTextBox.Text = _product.Characteristic?.Country;
+        DatePicker.SelectedDate = TimeService.DateOnlyToDateTime(_product.Characteristic?.ManufactureDate);
+        StatusComboBox.SelectedItem = _product.Characteristic?.ProductStatus;
+    }
 
         public void OnProductAdded(EntityEventArgs e)
         {
