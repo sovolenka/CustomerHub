@@ -48,7 +48,6 @@ public partial class ProgramWindow : Window
 
     private void ImportClick(object sender, RoutedEventArgs e)
     {
-        // open folder dialog to select directory
         var dialog = new System.Windows.Forms.FolderBrowserDialog();
         var result = dialog.ShowDialog();
         if (result != System.Windows.Forms.DialogResult.OK) return;
@@ -56,6 +55,7 @@ public partial class ProgramWindow : Window
         _csvService.ImportFromCsv(directory);
         ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        MessageBox.Show("Імпорт завершено");
         Log.Information(
             $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
     }
@@ -68,6 +68,7 @@ public partial class ProgramWindow : Window
         if (result != System.Windows.Forms.DialogResult.OK) return;
         string directory = dialog.SelectedPath;
         _csvService.ExportToCsv(directory);
+        MessageBox.Show("Експорт завершено");
         Log.Information(
             $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Export to {directory} completed");
     }
