@@ -73,7 +73,7 @@ public class ProductServiceTest : TestsBase
                 Manufacturer = "Manufacturer",
                 Country = "Country",
                 ManufactureDate = new DateOnly(2023, 1, 1),
-                Status = ProductStatus.New
+                ProductStatus = ProductStatus.New
             },
             User = _user
         };

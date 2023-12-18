@@ -13,6 +13,7 @@ public partial class AddProductWindow : Window
     private readonly ProductService _productService;
     private readonly TimeService _timeService;
     public event EventHandler<EntityEventArgs> ProductAdded;
+
     public AddProductWindow()
     {
         _productService = new ProductService();
@@ -63,6 +64,7 @@ public partial class AddProductWindow : Window
             NameText.Foreground = new SolidColorBrush(Colors.Red);
             return;
         }
+
         if (!_productService.IsProductNameUnique(NameTextBox.Text, AuthorizationService.AuthorizedUser!))
         {
             ErrorTextBlock.Text = "Такий продукт вже існує";
@@ -89,16 +91,14 @@ public partial class AddProductWindow : Window
             PriceTextBoxErorBlock.Text = "Невірний формат";
             return;
         }
+
         if (StatusComboBox.SelectedItem == null)
         {
             StatusComboBoxErrorText.Text = "Виберіть статус продукту";
             return;
         }
 
-
-
-
-        Characteristic characteristic = new (
+        Characteristic characteristic = new(
             TypeTextBox.Text,
             CategoryTextBox.Text,
             DescriptionTextBox.Text,
@@ -107,7 +107,7 @@ public partial class AddProductWindow : Window
             DateOnly.FromDateTime(DateTime.Now),
             (ProductStatus)StatusComboBox.SelectedItem!
         );
-        Product product = new (
+        Product product = new(
             NameTextBox.Text,
             Convert.ToInt32(PriceTextBox.Text),
             characteristic
@@ -117,13 +117,15 @@ public partial class AddProductWindow : Window
         if (added is null)
         {
             ErrorTextBlock.Text = "Помилка при додаванні продукту";
-            Log.Error($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding product: {product.Name}");
+            Log.Error(
+                $"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding product: {product.Name}");
         }
         else
         {
             OnProductAdded(new EntityEventArgs(added));
             ErrorTextBlock.Text = "Продукт успішно додано";
-            Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product added: {product.Name}");
+            Log.Information(
+                $"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product added: {product.Name}");
             ClearFields();
         }
     }

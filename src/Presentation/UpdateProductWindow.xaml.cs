@@ -45,7 +45,7 @@ public partial class UpdateProductWindow : Window
         ManufacturerTextBox.Text = _product.Characteristic?.Manufacturer;
         CountryTextBox.Text = _product.Characteristic?.Country;
         DatePicker.SelectedDate = TimeService.DateOnlyToDateTime(_product.Characteristic?.ManufactureDate);
-        StatusComboBox.SelectedItem = _product.Characteristic?.Status;
+        StatusComboBox.SelectedItem = _product.Characteristic?.ProductStatus;
     }
 
     public void OnProductAdded(EntityEventArgs e)
@@ -110,7 +110,7 @@ public partial class UpdateProductWindow : Window
         _product.Characteristic!.Manufacturer = ManufacturerTextBox.Text;
         _product.Characteristic!.Country = CountryTextBox.Text;
         _product.Characteristic!.ManufactureDate = DateOnly.FromDateTime(DatePicker.SelectedDate ?? DateTime.Now);
-        _product.Characteristic!.Status = (ProductStatus)StatusComboBox.SelectedItem!;
+        _product.Characteristic!.ProductStatus = (ProductStatus)StatusComboBox.SelectedItem!;
 
         Product? updated = _productService.Update(_product);
 

@@ -58,7 +58,7 @@ public class ProductService
                product.Characteristic!.Manufacturer!.ToLower().Contains(query) ||
                product.Characteristic!.Country!.ToLower().Contains(query) ||
                product.Characteristic.ManufactureDate.ToString().ToLower().Contains(query) ||
-               product.Characteristic.Status!.ToString().ToLower().Contains(query);
+               product.Characteristic.ProductStatus!.ToString().ToLower().Contains(query);
     }
 
     public bool IsProductNameUnique(string? productName, User user)

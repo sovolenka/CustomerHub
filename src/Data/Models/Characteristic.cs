@@ -16,7 +16,7 @@ public class Characteristic
         string manufacturer,
         string country,
         DateOnly manufactureDate,
-        ProductStatus status
+        ProductStatus productStatus
     )
     {
         ProductType = productType;
@@ -25,7 +25,7 @@ public class Characteristic
         Manufacturer = manufacturer;
         Country = country;
         ManufactureDate = manufactureDate;
-        Status = status;
+        ProductStatus = productStatus;
     }
 
     [Key]
@@ -48,7 +48,7 @@ public class Characteristic
 
     public DateOnly ManufactureDate { get; set; }
 
-    public ProductStatus Status { get; set; }
+    public ProductStatus ProductStatus { get; set; }
 
     [Required]
     [ForeignKey("ProductId")]

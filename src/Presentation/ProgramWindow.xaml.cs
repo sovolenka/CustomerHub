@@ -32,7 +32,8 @@ public partial class ProgramWindow : Window
     {
         UpdatePasswordWindow updateAccountWindow = new();
         updateAccountWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
     }
 
     private void LogOutClick(object sender, RoutedEventArgs e)
@@ -41,7 +42,8 @@ public partial class ProgramWindow : Window
         authorizationWindow.Show();
         _authorizationService.LogOut();
         Close();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. User {AuthorizationService.AuthorizedUser?.Email} logged out");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. User {AuthorizationService.AuthorizedUser?.Email} logged out");
     }
 
     private void ImportClick(object sender, RoutedEventArgs e)
@@ -52,7 +54,10 @@ public partial class ProgramWindow : Window
         if (result != System.Windows.Forms.DialogResult.OK) return;
         string directory = dialog.SelectedPath;
         _csvService.ImportFromCsv(directory);
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
+        ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
     }
 
     private void ExportClick(object sender, RoutedEventArgs e)
@@ -63,7 +68,8 @@ public partial class ProgramWindow : Window
         if (result != System.Windows.Forms.DialogResult.OK) return;
         string directory = dialog.SelectedPath;
         _csvService.ExportToCsv(directory);
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Export to {directory} completed");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Export to {directory} completed");
     }
 
 
@@ -71,7 +77,8 @@ public partial class ProgramWindow : Window
     {
         AnalysisWindow analysisWindow = new();
         analysisWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AnalysisWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AnalysisWindow opened");
     }
 
     private void ShowClientList(object sender, RoutedEventArgs e)
@@ -97,7 +104,8 @@ public partial class ProgramWindow : Window
         AddClientWindow addClientWindow = new();
         addClientWindow.ClientAdded += OnClientsUpdate;
         addClientWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddClientWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddClientWindow opened");
     }
 
     private void OnClientsUpdate(object? sender, EntityEventArgs e)
@@ -121,18 +129,21 @@ public partial class ProgramWindow : Window
         UpdateClientWindow updateClientWindow = new(selectedClient);
         updateClientWindow.ClientAdded += OnClientsUpdate;
         updateClientWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateClientWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateClientWindow opened");
     }
 
     private void DeleteClientClick(object sender, RoutedEventArgs e)
     {
         Client selectedClient = (Client)ClientList.SelectedItem;
         MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"Ви справді, хочете видалити клієнта {selectedClient.FirstName} {selectedClient.SecondName}?",
-            "Підтвердження видалення", MessageBoxButton.YesNo);
+            $"Р’Рё РІРїРµРІРЅРµРЅС–, С‰Рѕ С…РѕС‡РµС‚Рµ РІРёРґР°Р»РёС‚Рё РєР»С–С”РЅС‚Р° {selectedClient.FirstName} {selectedClient.SecondName}?",
+            "РџС–РґС‚РІРµСЂРґР¶РµРЅРЅСЏ РІРёРґР°Р»РµРЅРЅСЏ",
+            MessageBoxButton.YesNo);
         if (messageBoxResult == MessageBoxResult.No) return;
         _clientService.Remove(selectedClient);
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {selectedClient.FirstName} {selectedClient.SecondName} deleted");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {selectedClient.FirstName} {selectedClient.SecondName} deleted");
         ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client list updated");
     }
@@ -160,7 +171,8 @@ public partial class ProgramWindow : Window
         AddProductWindow addProductWindow = new();
         addProductWindow.ProductAdded += OnProductsUpdate;
         addProductWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
     }
 
     // Event handler for the ClientAdded event
@@ -183,11 +195,13 @@ public partial class ProgramWindow : Window
     {
         Product selectedProduct = (Product)ProductList.SelectedItem;
         MessageBoxResult messageBoxResult = MessageBox.Show(
-            $"Ви справді, хочете видалити товар {selectedProduct.Name}?",
-            "Підтвердження видалення", MessageBoxButton.YesNo);
+            $"Р’Рё РІРїРµРІРЅРµРЅС–, С‰Рѕ С…РѕС‡РµС‚Рµ РІРёРґР°Р»РёС‚Рё РїСЂРѕРґСѓРєС‚ {selectedProduct.Name}?",
+            "РџС–РґС‚РІРµСЂРґР¶РµРЅРЅСЏ РІРёРґР°Р»РµРЅРЅСЏ",
+            MessageBoxButton.YesNo);
         if (messageBoxResult == MessageBoxResult.No) return;
         _productService.Remove(selectedProduct);
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {selectedProduct.Name} deleted");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product {selectedProduct.Name} deleted");
         ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
         Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product list updated");
     }
@@ -215,7 +229,8 @@ public partial class ProgramWindow : Window
         AddProductWindow addProductWindow = new();
         addProductWindow.ProductAdded += OnProductsUpdate;
         addProductWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. AddProductWindow opened");
     }
 
     private void EditProductClick(object sender, RoutedEventArgs e)
@@ -224,7 +239,8 @@ public partial class ProgramWindow : Window
         UpdateProductWindow updateClientWindow = new(selectedProduct);
         updateClientWindow.ProductAdded += OnProductsUpdate;
         updateClientWindow.Show();
-        Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateProductWindow opened");
+        Log.Information(
+            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdateProductWindow opened");
     }
 
     private void ClientListSelectionChanged(object sender, SelectionChangedEventArgs e)
