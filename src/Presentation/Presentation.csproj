@@ -21,7 +21,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
+	<PropertyGroup>
+		<NoWarn>SA0102</NoWarn>
+	</PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />

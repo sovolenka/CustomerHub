@@ -7,6 +7,9 @@
     <Nullable>enable</Nullable>
     <Platforms>AnyCPU;ARM64</Platforms>
   </PropertyGroup>
+	<PropertyGroup>
+		<NoWarn>SA0102</NoWarn>
+	</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />

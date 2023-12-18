@@ -4,10 +4,12 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-
+        
         <IsPackable>false</IsPackable>
     </PropertyGroup>
-
+    <PropertyGroup>
+		<NoWarn>SA0102</NoWarn>
+	</PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
         <PackageReference Include="Moq" Version="4.20.70" />
