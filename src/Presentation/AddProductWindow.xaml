@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-         Title ="Новий клієнт" Height="550" Width="500" MinHeight="550" MinWidth="500" Background="#FFF4EEEE">
+         Title ="Новий товар" Height="550" Width="500" MinHeight="550" MinWidth="500" Background="#FFF4EEEE">
     <Grid Margin="10" Background="#FFF4EEEE" >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

@@ -63,7 +63,7 @@ namespace Presentation
         private void UpdateButtonClick(object sender, RoutedEventArgs e)
         {
             NameText.Foreground = new SolidColorBrush(Colors.Black);
-            PriceTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            PriceText.Foreground = new SolidColorBrush(Colors.Black);
             PriceTextBoxErorBlock.Text = "";
             StatusComboBoxErrorText.Text = "";
             ErrorTextBlock.Text = "";

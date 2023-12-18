@@ -42,16 +42,16 @@ namespace Presentation
             EmailTextBox.Text = "";
             AddressTextBox.Text = "";
             FactoryTextBox.Text = "";
-            EmailErrorTextBlock.Text = "";
-            PhoneNumberErrorTextBlock.Text = "";
-            FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
-            FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
-            EmailTextBox.Foreground = new SolidColorBrush(Colors.Black);
-            PhoneNumberTextBox.Foreground = new SolidColorBrush(Colors.Black);
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
+            ErrorTextBlock.Text = "";
+            EmailErrorTextBlock.Text = "";
+            PhoneNumberErrorTextBlock.Text = "";
+            FirstNameText.Foreground = new SolidColorBrush(Colors.Black);
+            EmailText.Foreground = new SolidColorBrush(Colors.Black);
+            PhoneNumberText.Foreground = new SolidColorBrush(Colors.Black);
             if (FirstNameTextBox.Text == "")
             {
                 FirstNameText.Foreground = new SolidColorBrush(Colors.Red);
@@ -63,13 +63,7 @@ namespace Presentation
                 EmailText.Foreground = new SolidColorBrush(Colors.Red);
                 return;
             }
-            if (PhoneNumberTextBox.Text == "")
-            {
-                PhoneNumberText.Foreground = new SolidColorBrush(Colors.Red);
-                return;
-            }
-
-            if (EmailTextBox.Text != "")
+            else
             {
                 try
                 {
@@ -83,7 +77,12 @@ namespace Presentation
                     return;
                 }
             }
-            if (PhoneNumberTextBox.Text != "")
+            if (PhoneNumberTextBox.Text == "")
+            {
+                PhoneNumberText.Foreground = new SolidColorBrush(Colors.Red);
+                return;
+            }
+            else
             {
                 try
                 {
@@ -126,6 +125,7 @@ namespace Presentation
             Client? added = _clientService.Add(client, AuthorizationService.AuthorizedUser!);
             if (added is null)
             {
+                ErrorTextBlock.Foreground = new SolidColorBrush(Colors.Red);
                 ErrorTextBlock.Text = "Помилка при додаванні клієнта";
                 Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding client {client.Email}");
             }
@@ -133,6 +133,7 @@ namespace Presentation
             {
                 // Notify subscribers (e.g., the ClientListWindow) that a new client is added
                 OnClientAdded(new EntityEventArgs(added));
+                ErrorTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                 ErrorTextBlock.Text = "Клієнт успішно доданий";
                 Log.Information($"{nameof(AddClientWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Client {client.Email} added successfully");
                 ClearField();

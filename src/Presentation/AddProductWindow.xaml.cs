@@ -56,7 +56,7 @@ namespace Presentation
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
             NameText.Foreground = new SolidColorBrush(Colors.Black);
-            PriceTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            PriceText.Foreground = new SolidColorBrush(Colors.Black);
             PriceTextBoxErorBlock.Text = "";
             StatusComboBoxErrorText.Text = "";
             ErrorTextBlock.Text = "";
@@ -97,10 +97,6 @@ namespace Presentation
                 StatusComboBoxErrorText.Text = "Виберіть статус продукту";
                 return;
             }
-
-
-
-
             Characteristic characteristic = new(
                 TypeTextBox.Text,
                 CategoryTextBox.Text,
@@ -119,12 +115,14 @@ namespace Presentation
             Product? added = _productService.Add(product, AuthorizationService.AuthorizedUser!);
             if (added is null)
             {
+                PriceText.Foreground = new SolidColorBrush(Colors.Red);
                 ErrorTextBlock.Text = "Помилка при додаванні продукту";
                 Log.Error($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Error while adding product: {product.Name}");
             }
             else
             {
                 OnProductAdded(new EntityEventArgs(added));
+                PriceText.Foreground = new SolidColorBrush(Colors.Green);
                 ErrorTextBlock.Text = "Продукт успішно додано";
                 Log.Information($"{nameof(AddProductWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Product added: {product.Name}");
                 ClearFields();
