@@ -13,34 +13,34 @@ namespace Business.Services
         private const string ProductsFileName = "products.csv";
         private const string RemindersFileName = "reminders.csv";
 
-    public void ExportToCsv(string directory)
-    {
-        var clients = GetClientsWithoutUser();
-        var products = GetProductsWithoutUser();
-        // var reminders = GetRemindersWithoutUser();
+        public void ExportToCsv(string directory)
+        {
+            var clients = GetClientsWithoutUser();
+            var products = GetProductsWithoutUser();
+            // var reminders = GetRemindersWithoutUser();
 
-        CsvExporter.ExportToCsv(clients, Path.Combine(directory, ClientsFileName));
-        CsvExporter.ExportToCsv(products, Path.Combine(directory, ProductsFileName));
-        // CsvExporter.ExportToCsv(reminders, Path.Combine(directory, RemindersFileName));
-    }
+            CsvExporter.ExportToCsv(clients, Path.Combine(directory, ClientsFileName));
+            CsvExporter.ExportToCsv(products, Path.Combine(directory, ProductsFileName));
+            // CsvExporter.ExportToCsv(reminders, Path.Combine(directory, RemindersFileName));
+        }
 
-    public void ImportFromCsv(string directory)
-    {
-        var clients = CsvImporter.ImportFromCsv<Client>(Path.Combine(directory, ClientsFileName)).ToList();
-        var products = CsvImporter.ImportFromCsv<Product>(Path.Combine(directory, ProductsFileName)).ToList();
-        // var reminders = CsvImporter.ImportFromCsv<Reminder>(Path.Combine(directory, RemindersFileName)).ToList();
+        public void ImportFromCsv(string directory)
+        {
+            var clients = CsvImporter.ImportFromCsv<Client>(Path.Combine(directory, ClientsFileName)).ToList();
+            var products = CsvImporter.ImportFromCsv<Product>(Path.Combine(directory, ProductsFileName)).ToList();
+            // var reminders = CsvImporter.ImportFromCsv<Reminder>(Path.Combine(directory, RemindersFileName)).ToList();
 
-        SetAuthorizedUserToClients(clients);
-        SetAuthorizedUserToProducts(products);
-        // SetAuthorizedUserToReminders(reminders);
-        
-        _context.Clients?.AttachRange(clients);
-        _context.Products?.AttachRange(products);
-        // var currentUser = AuthorizationService.AuthorizedUser;
-        // currentUser?.Reminders.AddRange(reminders);
-        // if (currentUser != null) _context.Users?.Update(currentUser);
-        _context.SaveChanges();
-    }
+            SetAuthorizedUserToClients(clients);
+            SetAuthorizedUserToProducts(products);
+            // SetAuthorizedUserToReminders(reminders);
+
+            _context.Clients?.AttachRange(clients);
+            _context.Products?.AttachRange(products);
+            // var currentUser = AuthorizationService.AuthorizedUser;
+            // currentUser?.Reminders.AddRange(reminders);
+            // if (currentUser != null) _context.Users?.Update(currentUser);
+            _context.SaveChanges();
+        }
 
         private void SetAuthorizedUserToClients(List<Client> clients)
         {
