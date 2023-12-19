@@ -113,7 +113,7 @@ namespace Presentation
             _product.Characteristic!.Manufacturer = ManufacturerTextBox.Text;
             _product.Characteristic!.Country = CountryTextBox.Text;
             _product.Characteristic!.ManufactureDate = DateOnly.FromDateTime(DatePicker.SelectedDate ?? DateTime.Now);
-            _product.Characteristic!.Status = (ProductStatus)StatusComboBox.SelectedItem!;
+            _product.Characteristic!.ProductStatus = (ProductStatus)StatusComboBox.SelectedItem!;
 
             Product? updated = _productService.Update(_product);
 

@@ -35,13 +35,6 @@ namespace Presentation
             updateAccountWindow.Show();
             Log.Information($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
         }
-    private void OpenEditAccountWindow(object sender, RoutedEventArgs e)
-    {
-        UpdatePasswordWindow updateAccountWindow = new();
-        updateAccountWindow.Show();
-        Log.Information(
-            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. UpdatePasswordWindow opened");
-    }
 
     private void LogOutClick(object sender, RoutedEventArgs e)
     {
