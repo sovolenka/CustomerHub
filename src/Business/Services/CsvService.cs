@@ -33,9 +33,12 @@ public class CsvService
         SetAuthorizedUserToClients(clients);
         SetAuthorizedUserToProducts(products);
         // SetAuthorizedUserToReminders(reminders);
-        
-        _context.Clients?.AttachRange(clients);
-        _context.Products?.AttachRange(products);
+
+        _context.Clients?.AttachRange(clients.Where(c =>
+            _context.Clients?.FirstOrDefault(c1 => c1.Email == c.Email) is null));
+        _context.Products?.AttachRange(products.Where(p =>
+            _context.Products?.FirstOrDefault(p1 =>
+                p1.Name == p.Name && p1.Price == p.Price) is null));
         // var currentUser = AuthorizationService.AuthorizedUser;
         // currentUser?.Reminders.AddRange(reminders);
         // if (currentUser != null) _context.Users?.Update(currentUser);
@@ -68,7 +71,8 @@ public class CsvService
 
     private List<Client> GetClientsWithoutUser()
     {
-        var clients = _context.Clients?.Where(c => c.User == AuthorizationService.AuthorizedUser).ToList() ?? new List<Client>();
+        var clients = _context.Clients?.Where(c => c.User == AuthorizationService.AuthorizedUser).ToList() ??
+                      new List<Client>();
         for (int i = 0; i < clients.Count; i++)
         {
             clients[i].Id = 0;

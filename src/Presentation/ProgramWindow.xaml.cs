@@ -48,16 +48,24 @@ public partial class ProgramWindow : Window
 
     private void ImportClick(object sender, RoutedEventArgs e)
     {
-        var dialog = new System.Windows.Forms.FolderBrowserDialog();
-        var result = dialog.ShowDialog();
-        if (result != System.Windows.Forms.DialogResult.OK) return;
-        string directory = dialog.SelectedPath;
-        _csvService.ImportFromCsv(directory);
-        ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-        ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
-        MessageBox.Show("Імпорт завершено");
-        Log.Information(
-            $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
+        try
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            var result = dialog.ShowDialog();
+            if (result != System.Windows.Forms.DialogResult.OK) return;
+            string directory = dialog.SelectedPath;
+            _csvService.ImportFromCsv(directory);
+            ClientList.ItemsSource = _clientService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+            ProductList.ItemsSource = _productService.GetAllByUser(AuthorizationService.AuthorizedUser!);
+            MessageBox.Show("Імпорт завершено");
+            Log.Information(
+                $"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Import from {directory} completed");
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"{nameof(ProgramWindow)}. {AuthorizationService.AuthorizedUser?.Email}. Data import error");
+            MessageBox.Show("Помилка імпорту даних");
+        }
     }
 
     private void ExportClick(object sender, RoutedEventArgs e)
