@@ -15,7 +15,7 @@ namespace Data.Context
 
         public string DbPath { get; }
 
-        public SQLiteContext(string dbPath = "customerhub.db")
+        public SQLiteContext(string dbPath = "Сustomerhub.db")
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
